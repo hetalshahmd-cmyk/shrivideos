@@ -12,4 +12,5 @@ The AI assistant reads this file at the start of every chat and updates it befor
 - (none yet)
 
 ## Log
+- **2026-10-12:** Project pushed to GitHub: https://github.com/hetalshahmd-cmyk/shrivideos (branch `main`). Downloaded books in `library/` are git-ignored and never pushed.
 - **2026-10-12:** Workspace prepared. The downloader was tested on 6 small files: all MD5 checks passed, and on restart it correctly skipped files it already had.
