@@ -1,0 +1,1323 @@
+<title>Shri Videos Starter Packet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Hind:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: long-read onboarding packet. Sticky contents rail on the left (desktop), one reading column; diagrams use the full column and scroll sideways on phones. */
+:root {
+  --ground: #F4F4F8;
+  --surface: #FFFFFF;
+  --ink: #1B1D3A;
+  --muted: #565A78;
+  --line: #D8D9E6;
+  --line-strong: #9EA1BD;
+  --accent: #B5540F;      /* kesar: the one warm accent */
+  --accent-soft: #FBEADB;
+  --gate: #A8346A;        /* approval gates */
+  --gate-soft: #F7E2EC;
+  --ok: #2C7451;
+  --ok-soft: #DEF0E5;
+  --link: #2F3E9E;
+  --f-display: "Rozha One", "Georgia", serif;
+  --f-body: "Hind", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Consolas", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #10122A; --surface: #181B37; --ink: #ECEBF6; --muted: #A9ABC8; --line: #2C3056; --line-strong: #5D628E;
+    --accent: #F2994E; --accent-soft: #3A2615; --gate: #EA82AE; --gate-soft: #3B1B2C; --ok: #74CC9F; --ok-soft: #15301F; --link: #A9B6FF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #10122A; --surface: #181B37; --ink: #ECEBF6; --muted: #A9ABC8; --line: #2C3056; --line-strong: #5D628E;
+  --accent: #F2994E; --accent-soft: #3A2615; --gate: #EA82AE; --gate-soft: #3B1B2C; --ok: #74CC9F; --ok-soft: #15301F; --link: #A9B6FF;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.62; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 96px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 52px; }
+@media (max-width: 980px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
+
+/* contents rail */
+.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; max-height: calc(100vh - 48px); overflow-y: auto; font-size: 14.5px; line-height: 1.4; padding-right: 4px; }
+.toc .eyebrow { margin-bottom: 10px; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: toc; }
+.toc li { counter-increment: toc; }
+.toc a { display: grid; grid-template-columns: 26px 1fr; padding: 4px 6px; border-radius: 6px; color: var(--muted); text-decoration: none; }
+.toc a::before { content: counter(toc, decimal-leading-zero); font-family: var(--f-mono); font-size: 12px; padding-top: 2px; color: var(--line-strong); }
+.toc a:hover { background: var(--surface); color: var(--ink); }
+@media (max-width: 980px) {
+  .toc { position: static; max-height: none; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 14px 10px; }
+  .toc ol { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+}
+
+main { min-width: 0; max-width: 800px; }
+
+.eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+h1, h2 { font-family: var(--f-display); font-weight: 400; line-height: 1.12; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.1rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.75rem, 3.6vw, 2.25rem); margin-top: 6px; }
+h3 { font-size: 1.12rem; font-weight: 600; margin: 30px 0 6px; text-wrap: balance; }
+p { margin: 0 0 14px; max-width: 68ch; }
+ul, ol { margin: 0 0 16px; padding-left: 1.3em; max-width: 68ch; }
+li { margin-bottom: 6px; }
+li::marker { color: var(--muted); }
+strong { font-weight: 600; }
+code, .mono { font-family: var(--f-mono); font-size: 0.84em; }
+code { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; overflow-wrap: anywhere; }
+
+section { padding-block: 40px 22px; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+section:first-of-type { border-top: 0; padding-top: 6px; }
+.lede { font-size: 1.14rem; color: var(--muted); max-width: 62ch; }
+
+/* cover */
+.cover { padding-bottom: 30px; }
+.cover h1 { margin: 10px 0 14px; }
+.cover .sub { font-size: 1.2rem; color: var(--muted); max-width: 56ch; margin-bottom: 26px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.facts div { background: var(--surface); padding: 14px 16px; min-width: 0; }
+.facts dt { font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.facts dd { margin: 0; font-weight: 600; line-height: 1.35; }
+.facts dl { margin: 0; }
+
+/* callouts */
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 18px 0; max-width: 72ch; }
+.note p:last-child, .note ul:last-child { margin-bottom: 0; }
+.note.gate { border-color: var(--gate); background: var(--gate-soft); }
+.note.ok { border-color: var(--ok); background: var(--ok-soft); }
+.note .label { display: block; font-size: 12.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+
+/* rules list */
+.rules { list-style: none; padding: 0; counter-reset: rule; display: grid; gap: 12px; max-width: 72ch; }
+.rules li { counter-increment: rule; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin: 0; }
+.rules li::before { content: counter(rule); font-family: var(--f-display); font-size: 1.7rem; line-height: 1; color: var(--accent); }
+.rules strong { display: block; }
+
+/* tables */
+.table-scroll { overflow-x: auto; margin: 16px 0 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.45; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font-size: 12.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); font-weight: 600; background: var(--ground); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .mono { overflow-wrap: anywhere; }
+
+/* chips */
+.chip { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.chip.use { color: var(--ok); }
+.chip.test { color: var(--accent); }
+.chip.no { color: var(--muted); }
+.chip.gate { color: var(--gate); }
+
+/* diagrams */
+figure.diagram { margin: 24px 0 28px; }
+figure.diagram .scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 12px; }
+figure.diagram svg { display: block; width: 100%; min-width: 660px; height: auto; color: var(--ink); font-family: var(--f-body); }
+figcaption { font-size: 14.5px; color: var(--muted); margin-top: 10px; max-width: 70ch; }
+svg .b  { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.2; }
+svg .bg { fill: var(--ground); stroke: none; }
+svg .a  { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+svg .g  { fill: var(--gate-soft); stroke: var(--gate); stroke-width: 1.4; }
+svg .k  { fill: var(--ok-soft); stroke: var(--ok); stroke-width: 1.2; }
+svg .panel { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.55; }
+svg .t  { fill: var(--ink); font-size: 13px; font-weight: 600; }
+svg .s  { fill: var(--muted); font-size: 11.5px; }
+svg .h  { fill: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; }
+svg .ta { fill: var(--accent); font-size: 11.5px; font-weight: 600; }
+svg .tg { fill: var(--gate); font-size: 11.5px; font-weight: 600; }
+svg .ln  { stroke: var(--line-strong); stroke-width: 1.5; fill: none; }
+svg .lna { stroke: var(--accent); stroke-width: 1.6; fill: none; }
+svg .lng { stroke: var(--gate); stroke-width: 1.5; fill: none; }
+svg .dash { stroke-dasharray: 5 4; }
+svg .grid { stroke: var(--line); stroke-width: 1; }
+svg .mk  { fill: var(--line-strong); }
+svg .mka { fill: var(--accent); }
+svg .mkg { fill: var(--gate); }
+svg .bar  { fill: var(--accent); }
+svg .bar2 { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 3; }
+svg .barText { fill: var(--surface); font-size: 11px; font-weight: 600; }
+svg .barText2 { fill: var(--accent); font-size: 11px; font-weight: 600; }
+
+/* two-column cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 16px 0 22px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; min-width: 0; }
+.card h4 { margin: 0 0 6px; font-size: 1rem; font-weight: 600; }
+.card p, .card ul { font-size: 15.5px; margin-bottom: 8px; }
+.card ul { padding-left: 1.1em; }
+.card.pick { border-color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok); }
+.card .tag { margin-bottom: 8px; }
+
+/* beat sheet */
+.beats { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); margin: 16px 0 22px; }
+.beat { display: grid; grid-template-columns: 112px minmax(0, 1fr); border-top: 1px solid var(--line); }
+.beat:first-child { border-top: 0; }
+.beat .tc { font-family: var(--f-mono); font-size: 13px; padding: 14px 12px; background: var(--ground); color: var(--accent); font-variant-numeric: tabular-nums; }
+.beat .bd { padding: 12px 16px; font-size: 15.5px; min-width: 0; }
+.beat .bd strong { display: block; }
+@media (max-width: 520px) { .beat { grid-template-columns: 1fr; } .beat .tc { padding: 8px 12px; } }
+
+/* folder tree */
+pre.tree { font-family: var(--f-mono); font-size: 13px; line-height: 1.6; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; overflow-x: auto; margin: 16px 0 22px; color: var(--ink); }
+pre.tree .c { color: var(--muted); }
+pre.tree .x { color: var(--accent); font-weight: 500; }
+
+/* checklist */
+.check { list-style: none; padding: 0; display: grid; gap: 8px; max-width: 72ch; }
+.check li { margin: 0; }
+.check label { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 11px 14px; cursor: pointer; }
+.check input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--ok); }
+.check input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line-strong); }
+
+/* report builder */
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; margin: 18px 0 8px; }
+@media (max-width: 860px) { .builder { grid-template-columns: minmax(0, 1fr); } }
+.builder form { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.row3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 460px) { .row3 { grid-template-columns: 1fr 1fr; } }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font-size: 13px; font-weight: 600; color: var(--muted); }
+.field input, .field textarea, .field select { width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--ground); border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; min-width: 0; }
+.field textarea { min-height: 64px; resize: vertical; line-height: 1.45; }
+fieldset { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px 12px; margin: 0; min-width: 0; }
+legend { font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); padding: 0 6px; }
+.out { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.out pre { margin: 0; font-family: var(--f-mono); font-size: 12.8px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--ground); border-radius: 8px; padding: 12px; max-height: 620px; overflow-y: auto; }
+.out .subj { font-family: var(--f-mono); font-size: 13px; background: var(--ground); border-radius: 8px; padding: 8px 12px; overflow-wrap: anywhere; }
+.btns { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; font-size: 14.5px; font-weight: 600; border-radius: 8px; padding: 7px 14px; cursor: pointer; border: 1px solid var(--accent); background: var(--accent); color: var(--surface); }
+button.ghost { background: transparent; color: var(--accent); }
+.status { font-size: 13.5px; color: var(--ok); min-height: 1.2em; }
+.example-flag { font-size: 13px; color: var(--muted); }
+
+/* glossary */
+dl.gloss { display: grid; grid-template-columns: minmax(130px, 200px) minmax(0, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); margin: 16px 0 22px; }
+dl.gloss dt, dl.gloss dd { padding: 10px 14px; border-top: 1px solid var(--line); margin: 0; }
+dl.gloss dt { font-weight: 600; background: var(--ground); }
+dl.gloss dt:first-of-type, dl.gloss dt:first-of-type + dd { border-top: 0; }
+dl.gloss dd { font-size: 15.5px; min-width: 0; }
+@media (max-width: 560px) { dl.gloss { grid-template-columns: 1fr; } dl.gloss dd { border-top: 0; padding-top: 0; background: var(--ground); } }
+
+.foot { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; margin-top: 30px; }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+
+<nav class="toc" aria-label="Contents">
+  <div class="eyebrow">In this packet</div>
+  <ol>
+    <li><a href="#welcome">Welcome</a></li>
+    <li><a href="#project">What Shri Videos is</a></li>
+    <li><a href="#role">Your role and decisions</a></li>
+    <li><a href="#rules">The ten rules</a></li>
+    <li><a href="#system">How it fits together</a></li>
+    <li><a href="#laneA">Lane A: source library</a></li>
+    <li><a href="#laneB">Lane B: Pilot 01 film</a></li>
+    <li><a href="#plan">The two-week plan</a></li>
+    <li><a href="#daily">Your day and the report</a></li>
+    <li><a href="#story">Storytelling research</a></li>
+    <li><a href="#software">Software research</a></li>
+    <li><a href="#canon">Visual canon</a></li>
+    <li><a href="#files">Files, names and logs</a></li>
+    <li><a href="#checks">Quality checks</a></li>
+    <li><a href="#words">Words to know</a></li>
+    <li><a href="#day1">Day 1 checklist</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<!-- 01 -->
+<section id="welcome" class="cover">
+  <div class="eyebrow">Shri Videos · Starter packet · October 2026</div>
+  <h1>Welcome, Krupali</h1>
+  <p class="sub">This packet explains the whole Shri Videos process so you can work on your own from India. Read it in order on your first day, then keep it open as your reference.</p>
+  <div class="facts">
+    <div><dl><dt>Start date</dt><dd>Monday 5 October 2026</dd></dl></div>
+    <div><dl><dt>First goal</dt><dd>Pilot 01: a 2-minute film, finished by Saturday 17 October</dd></dl></div>
+    <div><dl><dt>Second job, every day</dt><dd>Build the source library (download, check, record)</dd></dl></div>
+    <div><dl><dt>Your manager</dt><dd>Yash (daily questions, tools, schedule)</dd></dl></div>
+    <div><dl><dt>Final approvals</dt><dd>Dr. Shah (story, religious accuracy, the finished film)</dd></dl></div>
+    <div><dl><dt>Daily report</dt><dd>By 7:00 pm India time, every working day</dd></dl></div>
+    <div><dl><dt>Project home</dt><dd>Google Drive › MASTER_AI › 01_COMMERCIAL_VENTURES</dd></dl></div>
+    <div><dl><dt>Rulebook</dt><dd><code>00_MASTER_GUIDE.md</code> in that folder</dd></dl></div>
+  </div>
+  <div class="note">
+    <span class="label">How to use this packet</span>
+    <p>Parts 1 to 9 tell you what to do. Parts 10 and 11 explain why: they summarise the research the team did on storytelling and on software. Parts 12 to 16 are reference pages you will come back to. If this packet and the project files ever disagree, ask Yash before you act.</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="project">
+  <div class="eyebrow">Part 2</div>
+  <h2>What Shri Videos is</h2>
+  <p class="lede">A cinematic, respectful film series about Shrinathji and the Pushtimarg tradition, made for families everywhere, including people who have never heard of Pushtimarg.</p>
+  <p>The long-term plan is about <strong>52 weekly episodes</strong> of 12 to 15 minutes, told in order, with short pieces (30 to 60 seconds) and 3-minute stories along the way. AI tools help make the pictures and sound. People make every important decision.</p>
+  <h3>The standard</h3>
+  <p>The finished work must feel like a real film, not "good for AI." A shot is rejected if it shows an obvious AI mistake, a continuity error, a religious or historical error, a weak performance, or a cheap look.</p>
+  <h3>The order of priorities</h3>
+  <p><strong>Story first. Emotion second. Beauty third.</strong> Teaching lives inside the story, never as a lecture. A viewer who forgets half the names should still understand who wants what, what choice is made, and why it matters.</p>
+  <h3>Where Pilot 01 fits</h3>
+  <p>The project files planned a short proof film before anything longer. Dr. Shah has now set the first target as a <strong>2-minute pilot in two weeks</strong>. Pilot 01 is an internal test film. It is <strong>not published</strong> until it passes all three approval gates and Dr. Shah decides. Speed is welcome; skipping a check is not.</p>
+  <div class="note gate">
+    <span class="label">The one rule above all others</span>
+    <p>AI is never the religious authority. Keep what history documents separate from what devotional tradition remembers, label every claim, and never invent sacred details because a tool can draw them.</p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="role">
+  <div class="eyebrow">Part 3</div>
+  <h2>Your role, and how decisions work</h2>
+  <p class="lede">You run two lanes of work every day. You decide most things yourself. A few decisions belong to Yash or Dr. Shah, and those come back to you overnight.</p>
+  <div class="cards">
+    <div class="card">
+      <h4>Lane A · Source library</h4>
+      <p>Download the original books and images the project needs, check each file, give it an ID, and record it in the registry. About an hour a day once the first batch is done.</p>
+    </div>
+    <div class="card">
+      <h4>Lane B · Pilot 01 film</h4>
+      <p>Turn one story into a 2-minute film: source note, script, shot list, reference images, video takes, edit, review. This is your main work for two weeks.</p>
+    </div>
+  </div>
+  <h3>Who decides what</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>You decide alone</th><th>Ask Yash</th><th>Only Dr. Shah approves</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Order of your tasks; prompts and tool settings; which takes to keep; file names; which approved-list files to download next; how to fix a technical problem.</td>
+          <td>Account or tool problems; buying credits within the approved budget; schedule changes; anything unclear in this packet; anything you are unsure is safe.</td>
+          <td>The pilot topic; the script (religious and historical check); the look of people and places; spending above the cap; the finished film; anything public; any contact with temples, havelis, scholars or rights owners.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Working without waiting</h3>
+  <ul>
+    <li><strong>Never sit idle.</strong> If one lane is waiting for an approval, work on the other lane, or on the parts of the film that are not sacred (landscape, cattle, village, sound).</li>
+    <li><strong>Safe default after 24 hours.</strong> For ordinary questions, write your recommendation in the report and say what you will do if there is no reply. If no reply comes within 24 hours, do it and say so in the next report.</li>
+    <li><strong>No default for sacred questions.</strong> Anything about how to show or describe Shrinathji, Mahaprabhuji, sacred events or mantras waits for Dr. Shah. Work on something else meanwhile.</li>
+    <li><strong>Write it down.</strong> Every decision you make goes into the daily report, so nobody has to ask.</li>
+  </ul>
+</section>
+
+<!-- 04 -->
+<section id="rules">
+  <div class="eyebrow">Part 4</div>
+  <h2>The ten rules</h2>
+  <p class="lede">These come from the project's rights policy and research framework. They apply to everything you do.</p>
+  <ol class="rules">
+    <li><div><strong>Label every claim.</strong> Each script line is HISTORY, TRADITION, THEOLOGY, DRAMATIZATION or OPEN. Tradition is never presented as documented history, and never called "myth."</div></li>
+    <li><div><strong>Cite the page.</strong> Every TRADITION or HISTORY line names its source ID and page. No page, no line.</div></li>
+    <li><div><strong>Never invent sacred details.</strong> No made-up divine dialogue, dates, clothing, jewellery, architecture or miracles. If the source does not say it, the film does not say it.</div></li>
+    <li><div><strong>Sacred mantras stay out.</strong> No mantra text in scripts, subtitles, prompts or audio without Dr. Shah's written approval.</div></li>
+    <li><div><strong>No exact Gregorian dates for traditional events.</strong> Use the traditional Hindu date or no date until the calendar question is settled.</div></li>
+    <li><div><strong>Lawful access only.</strong> Never bypass a login, paywall or DRM. "Downloadable" does not mean "free to use."</div></li>
+    <li><div><strong>Owning a file is not permission to use it.</strong> Record rights and sacred status separately for every source. Archive privately; publish nothing without a rights decision.</div></li>
+    <li><div><strong>Originals are evidence.</strong> Never edit, rename inside, or overwrite a downloaded original. OCR text, notes and translations are separate files.</div></li>
+    <li><div><strong>Everything gets an ID and a log.</strong> Sources, characters, places, shots and takes all have IDs, and every AI generation that you keep is logged.</div></li>
+    <li><div><strong>Tag the period of every image.</strong> Later Nathdwara paintings are not evidence for what Braj looked like around 1500. Mark each reference with its date and use.</div></li>
+  </ol>
+</section>
+
+<!-- 05 -->
+<section id="system">
+  <div class="eyebrow">Part 5</div>
+  <h2>How the whole system fits together</h2>
+  <p class="lede">Your two lanes meet in one place: the shared record in Drive. Lane A writes into it. Lane B reads from it.</p>
+  <figure class="diagram">
+    <div class="scroll">
+      <svg viewBox="0 0 760 372" role="img" aria-label="Lane A writes source files, claim notes and reference images into a shared record in Drive; Lane B reads from that record to make the source note, script and reference pack; every shot records the IDs it used.">
+        <defs>
+          <marker id="d1m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="d1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker>
+        </defs>
+        <text x="120" y="24" text-anchor="middle" class="h">LANE A · BUILD THE LIBRARY</text>
+        <text x="380" y="24" text-anchor="middle" class="h">SHARED RECORD IN DRIVE</text>
+        <text x="640" y="24" text-anchor="middle" class="h">LANE B · MAKE THE FILM</text>
+        <rect x="260" y="40" width="240" height="282" rx="12" class="panel"/>
+
+        <rect x="10" y="56" width="220" height="64" rx="8" class="b"/>
+        <text x="120" y="83" text-anchor="middle" class="t">Download the original</text>
+        <text x="120" y="102" text-anchor="middle" class="s">check MD5, add SHA-256</text>
+        <rect x="10" y="150" width="220" height="64" rx="8" class="b"/>
+        <text x="120" y="177" text-anchor="middle" class="t">Read the text</text>
+        <text x="120" y="196" text-anchor="middle" class="s">note what it says + page</text>
+        <rect x="10" y="244" width="220" height="64" rx="8" class="b"/>
+        <text x="120" y="271" text-anchor="middle" class="t">Download museum images</text>
+        <text x="120" y="290" text-anchor="middle" class="s">record date, period, rights</text>
+
+        <rect x="270" y="56" width="220" height="64" rx="8" class="a"/>
+        <text x="380" y="83" text-anchor="middle" class="t">Source registry</text>
+        <text x="380" y="102" text-anchor="middle" class="s">one row per file · SHR-SRC ID</text>
+        <rect x="270" y="150" width="220" height="64" rx="8" class="a"/>
+        <text x="380" y="177" text-anchor="middle" class="t">Claim notes</text>
+        <text x="380" y="196" text-anchor="middle" class="s">HISTORY · TRADITION · OPEN</text>
+        <rect x="270" y="244" width="220" height="64" rx="8" class="a"/>
+        <text x="380" y="271" text-anchor="middle" class="t">Reference images</text>
+        <text x="380" y="290" text-anchor="middle" class="s">period-tagged, rights noted</text>
+
+        <rect x="530" y="56" width="220" height="64" rx="8" class="b"/>
+        <text x="640" y="83" text-anchor="middle" class="t">Source note for the story</text>
+        <text x="640" y="102" text-anchor="middle" class="s">what the text says, with pages</text>
+        <rect x="530" y="150" width="220" height="64" rx="8" class="b"/>
+        <text x="640" y="177" text-anchor="middle" class="t">Script</text>
+        <text x="640" y="196" text-anchor="middle" class="s">every line labeled and cited</text>
+        <rect x="530" y="244" width="220" height="64" rx="8" class="b"/>
+        <text x="640" y="271" text-anchor="middle" class="t">Reference pack → shots</text>
+        <text x="640" y="290" text-anchor="middle" class="s">approved looks only</text>
+
+        <line x1="231" y1="88" x2="268" y2="88" class="ln" marker-end="url(#d1m)"/>
+        <line x1="231" y1="182" x2="268" y2="182" class="ln" marker-end="url(#d1m)"/>
+        <line x1="231" y1="276" x2="268" y2="276" class="ln" marker-end="url(#d1m)"/>
+        <text x="249" y="80" text-anchor="middle" class="s">writes</text>
+        <text x="249" y="174" text-anchor="middle" class="s">writes</text>
+        <text x="249" y="268" text-anchor="middle" class="s">writes</text>
+        <line x1="491" y1="88" x2="528" y2="88" class="ln" marker-end="url(#d1m)"/>
+        <line x1="491" y1="182" x2="528" y2="182" class="ln" marker-end="url(#d1m)"/>
+        <line x1="491" y1="276" x2="528" y2="276" class="ln" marker-end="url(#d1m)"/>
+        <text x="510" y="80" text-anchor="middle" class="s">reads</text>
+        <text x="510" y="174" text-anchor="middle" class="s">reads</text>
+        <text x="510" y="268" text-anchor="middle" class="s">reads</text>
+
+        <path d="M640,309 V340 H420 V311" class="lna dash" marker-end="url(#d1a)"/>
+        <text x="530" y="362" text-anchor="middle" class="ta">each shot lists the source and reference IDs it used</text>
+      </svg>
+    </div>
+    <figcaption>Lane A writes into the shared record; Lane B only reads from it. Because each shot records the IDs it used, anyone can trace a moment in the film back to a page in a book or a dated painting.</figcaption>
+  </figure>
+  <p>This is the part no AI video tool does for us, and it is what makes Shri Videos trustworthy. When Dr. Shah asks "why does this shot look like this?" or "where does this line come from?", the answer is already written down.</p>
+</section>
+
+<!-- 06 -->
+<section id="laneA">
+  <div class="eyebrow">Part 6</div>
+  <h2>Lane A: building the source library</h2>
+  <p class="lede">The project's first goal was to collect a large library of original sources. As of 4 October nothing had been downloaded yet, so you are starting it.</p>
+
+  <h3>Where we start: the Internet Archive "Pushtimarg" upload</h3>
+  <p>Our first target (queue ID <code>AQ-0001</code>) is one large upload on archive.org: <a href="https://archive.org/details/Pushtimarg" target="_blank" rel="noopener">archive.org/details/Pushtimarg</a>. It was put online in 2017 by a community account and describes itself as a library of rare Pushtimarg books. We measured it from its public file list:</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Measure</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Original PDF and EPUB files</td><td class="num">2,456 files · 66.2 GB</td></tr>
+        <tr><td>After removing exact duplicates</td><td class="num">1,692 files · about 51 GB</td></tr>
+        <tr><td>Scanned books that will need OCR later</td><td class="num">about 999 files · 45 GB</td></tr>
+        <tr><td>Languages (from file names)</td><td>Gujarati ~650, Hindi ~610, English ~175, Sanskrit ~165, Vraj Bhasha ~57, unmarked ~790</td></tr>
+        <tr><td>License stated by uploader</td><td>None, so every file starts as <code>RIGHTS_UNKNOWN</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The full file list, with sizes, checksums, duplicate groups and download links, is in <code>AQ-0001_IA_Pushtimarg_metadata_snapshot_2026-10-04.csv</code>. Yash will put it in Drive for you. Use it as your working manifest.</p>
+
+  <h3>The pipeline for every file</h3>
+  <figure class="diagram">
+    <div class="scroll">
+      <svg viewBox="0 0 760 300" role="img" aria-label="Seven steps for each file: pick a row, label rights and sacred status, download, check MD5 against the archive and download again if it does not match, compute SHA-256 and assign an ID, add a registry row, save to Drive. Volume grows from 1 GB to 10, 50 and 200 GB only after Dr. Shah approves each gate.">
+        <defs>
+          <marker id="d2m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="d2g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkg"/></marker>
+        </defs>
+        <g>
+          <rect x="5" y="30" width="94" height="62" rx="8" class="b"/><text x="52" y="56" text-anchor="middle" class="t">Pick a row</text><text x="52" y="74" text-anchor="middle" class="s">from manifest</text>
+          <rect x="115" y="30" width="94" height="62" rx="8" class="b"/><text x="162" y="56" text-anchor="middle" class="t">Label it</text><text x="162" y="74" text-anchor="middle" class="s">rights + sacred</text>
+          <rect x="225" y="30" width="94" height="62" rx="8" class="b"/><text x="272" y="56" text-anchor="middle" class="t">Download</text><text x="272" y="74" text-anchor="middle" class="s">the original</text>
+          <rect x="335" y="30" width="94" height="62" rx="8" class="a"/><text x="382" y="56" text-anchor="middle" class="t">Check MD5</text><text x="382" y="74" text-anchor="middle" class="s">= archive's</text>
+          <rect x="445" y="30" width="94" height="62" rx="8" class="b"/><text x="492" y="56" text-anchor="middle" class="t">SHA-256</text><text x="492" y="74" text-anchor="middle" class="s">+ Source ID</text>
+          <rect x="555" y="30" width="94" height="62" rx="8" class="b"/><text x="602" y="56" text-anchor="middle" class="t">Registry</text><text x="602" y="74" text-anchor="middle" class="s">every field</text>
+          <rect x="665" y="30" width="90" height="62" rx="8" class="k"/><text x="710" y="56" text-anchor="middle" class="t">To Drive</text><text x="710" y="74" text-anchor="middle" class="s">originals</text>
+          <line x1="100" y1="61" x2="113" y2="61" class="ln" marker-end="url(#d2m)"/>
+          <line x1="210" y1="61" x2="223" y2="61" class="ln" marker-end="url(#d2m)"/>
+          <line x1="320" y1="61" x2="333" y2="61" class="ln" marker-end="url(#d2m)"/>
+          <line x1="430" y1="61" x2="443" y2="61" class="ln" marker-end="url(#d2m)"/>
+          <line x1="540" y1="61" x2="553" y2="61" class="ln" marker-end="url(#d2m)"/>
+          <line x1="650" y1="61" x2="663" y2="61" class="ln" marker-end="url(#d2m)"/>
+          <path d="M382,93 V116 H272 V95" class="ln dash" marker-end="url(#d2m)"/>
+          <text x="327" y="131" text-anchor="middle" class="s">no match → download again</text>
+        </g>
+        <text x="5" y="164" class="h">VOLUME GROWS ONLY AFTER EACH GATE</text>
+        <rect x="20" y="236" width="140" height="22" rx="4" class="a"/>
+        <text x="90" y="252" text-anchor="middle" class="t">1 GB proof</text>
+        <text x="90" y="226" text-anchor="middle" class="s">core texts first</text>
+        <rect x="200" y="216" width="140" height="42" rx="4" class="b"/>
+        <text x="270" y="242" text-anchor="middle" class="t">10 GB</text>
+        <text x="270" y="206" text-anchor="middle" class="s">more of AQ-0001</text>
+        <rect x="380" y="192" width="140" height="66" rx="4" class="b"/>
+        <text x="450" y="230" text-anchor="middle" class="t">50 GB</text>
+        <text x="450" y="182" text-anchor="middle" class="s">≈ all of AQ-0001</text>
+        <rect x="560" y="164" width="140" height="94" rx="4" class="b"/>
+        <text x="630" y="216" text-anchor="middle" class="t">200 GB</text>
+        <text x="630" y="155" text-anchor="middle" class="s">other archives, museums</text>
+        <path d="M180,243 l8,-8 l8,8 l-8,8 z" class="g" transform="translate(-8,0)"/>
+        <path d="M360,232 l8,-8 l8,8 l-8,8 z" class="g" transform="translate(-8,0)"/>
+        <path d="M540,218 l8,-8 l8,8 l-8,8 z" class="g" transform="translate(-8,0)"/>
+        <text x="180" y="278" text-anchor="middle" class="tg">OK</text>
+        <text x="360" y="278" text-anchor="middle" class="tg">OK</text>
+        <text x="540" y="278" text-anchor="middle" class="tg">OK</text>
+        <text x="380" y="296" text-anchor="middle" class="s">at each ◆ Dr. Shah reviews: files, duplicates skipped, failures, rights filled in, hours taken</text>
+      </svg>
+    </div>
+    <figcaption>Each file goes through the same seven steps, and a mismatched checksum sends you back to download it again. Volume grows only after Dr. Shah approves each gate. Downloading is fast; checking and recording are the real work, so the gates measure quality, not just gigabytes.</figcaption>
+  </figure>
+
+  <h3>Your first batch: the core texts</h3>
+  <p>Start with the books the research files are waiting for. Download these first (file names exactly as they appear on archive.org). The Prakatya Varta files also feed Pilot 01, so read them on Day 2.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Text</th><th>File name on archive.org</th><th>Size</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td>Shrinathji Prakatya Varta</td><td><span class="mono">Shreenathji Prakatya Vaarta Vraj Bhasha 1956 (Vaarta Sahitya).pdf</span></td><td class="num">5.2 MB</td><td>scan</td></tr>
+        <tr><td>Shrinathji Prakatya Varta (Gujarati)</td><td><span class="mono">ShriGovardhanNathajiShriNathajiNaPrakatyaniVartaTathaShriNathajina69pgujarati.pdf</span></td><td class="num">5.6 MB</td><td>text</td></tr>
+        <tr><td>Shrinathji Prakatya Varta (Vraj/Hindi)</td><td><span class="mono">ShrinathPrakatyaVaartajivraj-Hindi.pdf</span></td><td class="num">5.1 MB</td><td>scan</td></tr>
+        <tr><td>Nij Varta + 84 Vaishnav Varta</td><td><span class="mono">Nijvarta Gahruvarta Tatha Courashi Vaishnavanki Varta Vraj Bhasha 1959 (Vaarta Sahitya).pdf</span></td><td class="num">25.3 MB</td><td>text</td></tr>
+        <tr><td>84 Vaishnav Varta (Damodardas section)</td><td><span class="mono">84 Vaishnav Vaartaji Vraj Bhasha Mathura Dwarikadas Parikh 1955 (Vaarta Sahitya).pdf</span></td><td class="num">60.1 MB</td><td>text</td></tr>
+        <tr><td>84 Vaishnav Varta (Gujarati, 1881)</td><td><span class="mono">84 Vaishnav Vaartaji Gujarati Amdavad Shastri Pranvallabh 1881 (Vaarta Sahitya).pdf</span></td><td class="num">10.1 MB</td><td>text</td></tr>
+        <tr><td>Siddhanta Rahasya</td><td><span class="mono">Siddhant-rahasya-F675-Gujgujarati-2079.pdf</span> and <span class="mono">Siddhant-Rahasya-Darshan-1-1729.pdf</span></td><td class="num">1.3 + 100 MB</td><td>scan</td></tr>
+        <tr><td>Pushti-pravaha-maryada-bheda</td><td><span class="mono">PushtiPravahMaryadagujarati.pdf</span></td><td class="num">0.5 MB</td><td>text</td></tr>
+        <tr><td>Seva-phala with 14 commentaries</td><td><span class="mono">SevaPhalamWith-14-Comment-F533-hindi-Vraj-2019.pdf</span></td><td class="num">62.5 MB</td><td>scan</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Then continue down the other core files in the CSV (column <code>priority_text_tags</code>) until the batch reaches about 1 GB. Skip any row whose <code>exact_duplicate_group</code> you already have. Leave the 1.09 GB illustrated 1883 edition of the 84 Vaishnav Varta for the 10 GB stage.</p>
+
+  <h3>Step by step, for each file</h3>
+  <ol>
+    <li><strong>Pick the row</strong> in the manifest CSV. Mark it "in progress."</li>
+    <li><strong>Label it.</strong> For this upload use rights <code>RIGHTS_UNKNOWN</code> and sacred status <code>INTERNAL_RESEARCH_ONLY</code>, unless the book is clearly very old (note the year) or clearly modern.</li>
+    <li><strong>Download</strong> using the link in the <code>download_url</code> column.</li>
+    <li><strong>Check the MD5.</strong> In Windows PowerShell: <code>Get-FileHash -Algorithm MD5 "file.pdf"</code>. It must equal the <code>md5</code> column. If not, download again.</li>
+    <li><strong>Make the SHA-256 fingerprint:</strong> <code>Get-FileHash -Algorithm SHA256 "file.pdf"</code>. Give the source the next ID: <code>SHR-SRC-000001</code>, <code>SHR-SRC-000002</code> and so on.</li>
+    <li><strong>Add the registry row</strong> in <code>SHRI_SOURCE_REGISTRY</code>: ID, title, author or publisher, year, language, script, URL, access date, method ("archive.org download"), SHA-256, size, page count, scan or text, rights, sacred status, Drive location.</li>
+    <li><strong>Save to Drive</strong> in <code>10_RESEARCH_LIBRARY/01_ORIGINAL_SOURCES/AQ-0001/</code>. Never change the file after that.</li>
+  </ol>
+  <p>For the 10 GB stage and beyond, Yash will set up a small download script so you do not do thousands of files by hand. Your job then is checking, labelling and recording.</p>
+
+  <h3>Labels you will use most</h3>
+  <div class="cards">
+    <div class="card"><h4>Rights status</h4><ul><li><code>PUBLIC_DOMAIN</code>: clearly out of copyright</li><li><code>OPEN_LICENSE</code>: e.g. CC0 museum images</li><li><code>RIGHTS_UNKNOWN</code>: the default here</li><li><code>COPYRIGHT_RESTRICTED</code></li><li><code>PERMISSION_REQUIRED_BEFORE_PUBLIC_USE</code></li></ul></div>
+    <div class="card"><h4>Sacred status</h4><ul><li><code>PUBLIC</code></li><li><code>INTERNAL_RESEARCH_ONLY</code>: the default here</li><li><code>VAISHNAV_AUTHORITY_REVIEW_REQUIRED</code></li><li><code>RESTRICTED_SACRED</code></li><li><code>DO_NOT_PUBLICLY_REPRODUCE</code></li></ul></div>
+    <div class="card"><h4>Progress status</h4><ul><li><code>DISCOVERED</code>: listed only</li><li><code>ACQUIRED</code>: downloaded, checked, recorded</li><li><code>PROCESSED</code>: text extracted or OCR'd</li><li><code>RESEARCHED</code>: read and noted</li></ul></div>
+  </div>
+  <div class="note">
+    <span class="label">Not yet</span>
+    <p>Do not run OCR on the scanned books during these two weeks. The project first tests OCR tools on 30 to 60 sample pages of Gujarati, Hindi, Sanskrit and handwriting. Your reading ability in these languages will matter a lot for that test, later.</p>
+  </div>
+</section>
+
+<!-- 07 -->
+<section id="laneB">
+  <div class="eyebrow">Part 7</div>
+  <h2>Lane B: making Pilot 01</h2>
+  <p class="lede">One focused story, told in about two minutes, made with the same careful method the 52 episodes will use. This first film tests the method as much as the tools.</p>
+
+  <h3>Choose the story (Dr. Shah approves on Day 2)</h3>
+  <div class="cards">
+    <div class="card pick">
+      <div class="tag"><span class="chip use">Recommended</span></div>
+      <h4>A · The mystery on Govardhan hill</h4>
+      <p>Village life at the foot of Govardhan, cattle, and the tradition of a cow whose milk flowed at one place on the hill. Ends on the question of what lay there.</p>
+      <ul><li>Matches the project's Episode 1 idea: Govardhan, village life, cattle, mystery.</li><li>Its source, the Prakatya Varta, is in your first download batch.</li><li>Can be told without showing the sacred form itself.</li></ul>
+    </div>
+    <div class="card">
+      <div class="tag"><span class="chip test">Possible</span></div>
+      <h4>B · A day of darshan</h4>
+      <p>The eight daily darshans, from Mangla to Shayan. This is the project's named next research table.</p>
+      <ul><li>Needs temple imagery and the svarupa itself, so it needs sacred-depiction approval first.</li><li>Risk of mixing later Nathdwara visuals into older periods.</li></ul>
+    </div>
+    <div class="card">
+      <div class="tag"><span class="chip no">Not yet</span></div>
+      <h4>C · The first Vaishnav</h4>
+      <p>Damodardas Harsani and the first Brahmasambandha.</p>
+      <ul><li>The research file says this is not cleared: place, date, wording and who appeared are still open.</li></ul>
+    </div>
+  </div>
+
+  <h3>Draft beat sheet for story A</h3>
+  <p>This is a starting shape built from the Episode 1 idea. Change any beat to match what the source text actually says. Take names of people and places only from the text, with page numbers.</p>
+  <div class="beats">
+    <div class="beat"><div class="tc">0:00–0:10</div><div class="bd"><strong>Hook</strong>Dawn on Govardhan. One cow leaves the herd and walks uphill alone. The narration asks a question.</div></div>
+    <div class="beat"><div class="tc">0:10–0:30</div><div class="bd"><strong>Place and people</strong>A Braj village at the foot of the hill: cattle, milk pots, children, the family who owns the cow. One focal person we can follow.</div></div>
+    <div class="beat"><div class="tc">0:30–1:00</div><div class="bd"><strong>The mystery grows</strong>Each evening the cow comes back with no milk. Worry turns to curiosity. Someone decides to follow her.</div></div>
+    <div class="beat"><div class="tc">1:00–1:35</div><div class="bd"><strong>Discovery</strong>On the hillside, at one spot, her milk flows by itself. Faces of wonder. Show the cow, the hill, the people, never a deity.</div></div>
+    <div class="beat"><div class="tc">1:35–1:55</div><div class="bd"><strong>Meaning</strong>One or two lines, labeled TRADITION: "Pushtimarg tradition remembers that this place on Govardhan held something sacred…"</div></div>
+    <div class="beat"><div class="tc">1:55–2:00</div><div class="bd"><strong>End hook</strong>Title card, and a question that makes people ask "what happens next?"</div></div>
+  </div>
+
+  <h3>Do not show in Pilot 01</h3>
+  <p>The research file on Shrinathji's prakatya lists scenes that must not be made until a recognised Pushtimarg authority approves them:</p>
+  <ul>
+    <li>Shrinathji physically emerging from Govardhan, including the raised arm or face.</li>
+    <li>Shri Krishna or Shrinathji appearing before Vallabhacharyaji, or any embrace scene.</li>
+    <li>The Brahmasambandha revelation, Damodardas witnessing it, or Madhavendra Puri in any role.</li>
+    <li>Any sacred mantra, any invented divine words, or an exact Gregorian date.</li>
+  </ul>
+
+  <h3>Pilot 01 specification</h3>
+  <div class="table-scroll">
+    <table>
+      <tbody>
+        <tr><th>Length</th><td>1:50 to 2:10</td></tr>
+        <tr><th>Picture</th><td>16:9, 1920×1080, 24 fps, H.264 MP4, no watermark</td></tr>
+        <tr><th>Shots</th><td>About 18 to 22 shots, 4 to 8 seconds each</td></tr>
+        <tr><th>Voice</th><td>English narration, about 230 to 260 words, calm and clear. No dialogue in Pilot 01: it avoids invented words and lip-sync problems.</td></tr>
+        <tr><th>Sound</th><td>Licensed music (keep the license), plus ambience: cattle bells, wind, birds, village sounds</td></tr>
+        <tr><th>Text</th><td>Title card, end card, and a subtitle file (.srt)</td></tr>
+        <tr><th>Status</th><td>Internal test film. Not published until all three gates pass and Dr. Shah decides.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The pipeline, with the approval gates</h3>
+  <figure class="diagram">
+    <div class="scroll">
+      <svg viewBox="0 0 760 330" role="img" aria-label="Pilot 01 pipeline: source note, story beats, script, then Gate 1 religious and historical approval which can send the script back for changes; shot list and specs; reference pack; tool test and look approval; keyframes; video takes; rough cut with audio; review against all three gates which can send shots back to be fixed; then the master.">
+        <defs>
+          <marker id="d3m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="d3g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mkg"/></marker>
+        </defs>
+        <text x="10" y="18" class="h">PLAN · WEEK 1</text>
+        <rect x="10" y="50" width="118" height="60" rx="8" class="b"/><text x="69" y="76" text-anchor="middle" class="t">Source note</text><text x="69" y="94" text-anchor="middle" class="s">Day 2</text>
+        <rect x="146" y="50" width="118" height="60" rx="8" class="b"/><text x="205" y="76" text-anchor="middle" class="t">Story beats</text><text x="205" y="94" text-anchor="middle" class="s">Day 2–3</text>
+        <rect x="282" y="50" width="118" height="60" rx="8" class="b"/><text x="341" y="76" text-anchor="middle" class="t">Script v1 → v2</text><text x="341" y="94" text-anchor="middle" class="s">Day 3–4</text>
+        <path d="M444,54 L470,80 L444,106 L418,80 Z" class="g"/><text x="444" y="85" text-anchor="middle" class="tg">G1</text>
+        <rect x="488" y="50" width="122" height="60" rx="8" class="b"/><text x="549" y="76" text-anchor="middle" class="t">Shot list</text><text x="549" y="94" text-anchor="middle" class="s">+ specs · Day 4–5</text>
+        <rect x="628" y="50" width="122" height="60" rx="8" class="b"/><text x="689" y="76" text-anchor="middle" class="t">Reference pack</text><text x="689" y="94" text-anchor="middle" class="s">Day 5</text>
+        <line x1="129" y1="80" x2="144" y2="80" class="ln" marker-end="url(#d3m)"/>
+        <line x1="265" y1="80" x2="280" y2="80" class="ln" marker-end="url(#d3m)"/>
+        <line x1="401" y1="80" x2="416" y2="80" class="ln" marker-end="url(#d3m)"/>
+        <line x1="471" y1="80" x2="486" y2="80" class="ln" marker-end="url(#d3m)"/>
+        <line x1="611" y1="80" x2="626" y2="80" class="ln" marker-end="url(#d3m)"/>
+        <path d="M444,53 Q444,28 392,28 Q341,28 341,48" class="lng" marker-end="url(#d3g)"/>
+        <text x="392" y="22" text-anchor="middle" class="tg">changes</text>
+        <text x="444" y="126" text-anchor="middle" class="tg">religious + historical</text>
+
+        <path d="M689,111 V150 H118 V198" class="ln" marker-end="url(#d3m)"/>
+        <text x="380" y="144" text-anchor="middle" class="s">plan approved → start making</text>
+
+        <text x="10" y="182" class="h">MAKE · WEEK 2</text>
+        <rect x="10" y="200" width="118" height="60" rx="8" class="b"/><text x="69" y="226" text-anchor="middle" class="t">Tool test</text><text x="69" y="244" text-anchor="middle" class="s">2 shots × 2 tools</text>
+        <path d="M166,204 L192,230 L166,256 L140,230 Z" class="g"/><text x="166" y="235" text-anchor="middle" class="tg">G2</text>
+        <rect x="204" y="200" width="104" height="60" rx="8" class="b"/><text x="256" y="226" text-anchor="middle" class="t">Keyframes</text><text x="256" y="244" text-anchor="middle" class="s">stills · Day 7</text>
+        <rect x="324" y="200" width="104" height="60" rx="8" class="a"/><text x="376" y="226" text-anchor="middle" class="t">Video takes</text><text x="376" y="244" text-anchor="middle" class="s">Day 8–9</text>
+        <rect x="444" y="200" width="122" height="60" rx="8" class="b"/><text x="505" y="226" text-anchor="middle" class="t">Rough cut</text><text x="505" y="244" text-anchor="middle" class="s">+ audio · Day 9–10</text>
+        <path d="M612,204 L638,230 L612,256 L586,230 Z" class="g"/><text x="612" y="235" text-anchor="middle" class="tg">G1·2·3</text>
+        <rect x="654" y="200" width="96" height="60" rx="8" class="k"/><text x="702" y="226" text-anchor="middle" class="t">Master</text><text x="702" y="244" text-anchor="middle" class="s">Day 12</text>
+        <line x1="129" y1="230" x2="138" y2="230" class="ln" marker-end="url(#d3m)"/>
+        <line x1="193" y1="230" x2="202" y2="230" class="ln" marker-end="url(#d3m)"/>
+        <line x1="309" y1="230" x2="322" y2="230" class="ln" marker-end="url(#d3m)"/>
+        <line x1="429" y1="230" x2="442" y2="230" class="ln" marker-end="url(#d3m)"/>
+        <line x1="567" y1="230" x2="584" y2="230" class="ln" marker-end="url(#d3m)"/>
+        <line x1="639" y1="230" x2="652" y2="230" class="ln" marker-end="url(#d3m)"/>
+        <text x="166" y="276" text-anchor="middle" class="tg">look + tool</text>
+        <path d="M612,257 V300 H376 V262" class="lng" marker-end="url(#d3g)"/>
+        <text x="494" y="318" text-anchor="middle" class="tg">fix shots</text>
+      </svg>
+    </div>
+    <figcaption>Gate 1 sits before any picture is made, so a wrong script line never costs video credits. Gate 2 approves the look before you generate many shots. The review cut is checked against all three gates, and problems go back to the video takes, not to the start.</figcaption>
+  </figure>
+  <p>Notice the order: <strong>stills first, then video.</strong> You make and approve a still frame for every shot (the keyframe), and only then turn it into moving video. Fixing a still costs seconds. Fixing a video costs credits and hours.</p>
+</section>
+
+<!-- 08 -->
+<section id="plan">
+  <div class="eyebrow">Part 8</div>
+  <h2>The two-week plan</h2>
+  <p class="lede">Twelve working days, Monday 5 to Saturday 17 October, with Monday 19 October as a spare day. If your working week is Monday to Friday, Yash will shift the Saturday tasks.</p>
+  <figure class="diagram">
+    <div class="scroll">
+      <svg viewBox="0 0 760 340" role="img" aria-label="Two-week timeline: source library work days 1 to 3 then 30 to 60 minutes a day; story and script days 2 to 4; look and tool test days 5 to 6; keyframes and video days 7 to 9; narration and music days 9 to 10; edit and review days 10 to 12. Dr. Shah's approvals: topic day 2, 1 GB gate day 3, script day 4, look and tool day 6, rough cut day 10, review cut day 11, final day 12.">
+        <g class="s">
+          <text x="200" y="16" text-anchor="middle" class="h">D1</text><text x="248" y="16" text-anchor="middle" class="h">D2</text><text x="296" y="16" text-anchor="middle" class="h">D3</text><text x="344" y="16" text-anchor="middle" class="h">D4</text><text x="392" y="16" text-anchor="middle" class="h">D5</text><text x="440" y="16" text-anchor="middle" class="h">D6</text>
+          <text x="488" y="16" text-anchor="middle" class="h">D7</text><text x="536" y="16" text-anchor="middle" class="h">D8</text><text x="584" y="16" text-anchor="middle" class="h">D9</text><text x="632" y="16" text-anchor="middle" class="h">D10</text><text x="680" y="16" text-anchor="middle" class="h">D11</text><text x="728" y="16" text-anchor="middle" class="h">D12</text>
+        </g>
+        <text x="200" y="32" text-anchor="middle" class="s">Mon 5</text><text x="248" y="32" text-anchor="middle" class="s">Tue 6</text><text x="296" y="32" text-anchor="middle" class="s">Wed 7</text><text x="344" y="32" text-anchor="middle" class="s">Thu 8</text><text x="392" y="32" text-anchor="middle" class="s">Fri 9</text><text x="440" y="32" text-anchor="middle" class="s">Sat 10</text>
+        <text x="488" y="32" text-anchor="middle" class="s">Mon 12</text><text x="536" y="32" text-anchor="middle" class="s">Tue 13</text><text x="584" y="32" text-anchor="middle" class="s">Wed 14</text><text x="632" y="32" text-anchor="middle" class="s">Thu 15</text><text x="680" y="32" text-anchor="middle" class="s">Fri 16</text><text x="728" y="32" text-anchor="middle" class="s">Sat 17</text>
+        <g>
+          <line x1="176" y1="40" x2="176" y2="300" class="grid"/><line x1="224" y1="40" x2="224" y2="300" class="grid"/><line x1="272" y1="40" x2="272" y2="300" class="grid"/><line x1="320" y1="40" x2="320" y2="300" class="grid"/><line x1="368" y1="40" x2="368" y2="300" class="grid"/><line x1="416" y1="40" x2="416" y2="300" class="grid"/>
+          <line x1="464" y1="40" x2="464" y2="300" class="ln dash"/>
+          <line x1="512" y1="40" x2="512" y2="300" class="grid"/><line x1="560" y1="40" x2="560" y2="300" class="grid"/><line x1="608" y1="40" x2="608" y2="300" class="grid"/><line x1="656" y1="40" x2="656" y2="300" class="grid"/><line x1="704" y1="40" x2="704" y2="300" class="grid"/><line x1="752" y1="40" x2="752" y2="300" class="grid"/>
+        </g>
+        <text x="0" y="66" class="t">Source library</text>
+        <text x="0" y="104" class="t">Story + script</text>
+        <text x="0" y="142" class="t">Look + tool test</text>
+        <text x="0" y="180" class="t">Keyframes + video</text>
+        <text x="0" y="218" class="t">Narration + music</text>
+        <text x="0" y="256" class="t">Edit + review</text>
+        <text x="0" y="294" class="t" style="fill: var(--gate)">Dr. Shah approves</text>
+
+        <rect x="178" y="52" width="140" height="20" rx="4" class="bar"/><text x="248" y="66" text-anchor="middle" class="barText">core texts + registry</text>
+        <rect x="322" y="52" width="428" height="20" rx="4" class="bar2"/><text x="536" y="66" text-anchor="middle" class="barText2">30–60 minutes a day</text>
+        <rect x="226" y="90" width="140" height="20" rx="4" class="bar"/><text x="296" y="104" text-anchor="middle" class="barText">source note → script</text>
+        <rect x="370" y="128" width="92" height="20" rx="4" class="bar"/><text x="416" y="142" text-anchor="middle" class="barText">refs · test</text>
+        <rect x="466" y="166" width="140" height="20" rx="4" class="bar"/><text x="536" y="180" text-anchor="middle" class="barText">stills → video takes</text>
+        <rect x="562" y="204" width="92" height="20" rx="4" class="bar"/><text x="608" y="218" text-anchor="middle" class="barText">record + mix</text>
+        <rect x="610" y="242" width="140" height="20" rx="4" class="bar"/><text x="680" y="256" text-anchor="middle" class="barText">rough → review → final</text>
+
+        <path d="M272,281 l7,7 l-7,7 l-7,-7 z" class="g"/><text x="272" y="314" text-anchor="middle" class="tg">topic</text>
+        <path d="M320,281 l7,7 l-7,7 l-7,-7 z" class="g"/><text x="320" y="330" text-anchor="middle" class="tg">1 GB</text>
+        <path d="M368,281 l7,7 l-7,7 l-7,-7 z" class="g"/><text x="368" y="314" text-anchor="middle" class="tg">script</text>
+        <path d="M464,281 l7,7 l-7,7 l-7,-7 z" class="g"/><text x="464" y="314" text-anchor="middle" class="tg">look + tool</text>
+        <path d="M656,281 l7,7 l-7,7 l-7,-7 z" class="g"/><text x="656" y="314" text-anchor="middle" class="tg">rough</text>
+        <path d="M704,281 l7,7 l-7,7 l-7,-7 z" class="g"/><text x="704" y="330" text-anchor="middle" class="tg">review</text>
+        <path d="M745,281 l7,7 l-7,7 l-7,-7 z" class="g"/><text x="752" y="314" text-anchor="end" class="tg">final</text>
+        <text x="466" y="50" class="s">Sun off</text>
+      </svg>
+    </div>
+    <figcaption>Bars show where your time goes; each ◆ is a decision you send in that evening's report and usually get back the next morning. Approvals are spread out on purpose, so no single wait stops the film.</figcaption>
+  </figure>
+
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Day</th><th>Film (Lane B)</th><th>Library (Lane A)</th><th>Send for approval</th></tr></thead>
+      <tbody>
+        <tr><td class="num">D1 · Mon 5</td><td>Read Parts 1 to 9. Get access, install tools, set up folders.</td><td>Download the core texts in Part 6 and check every MD5.</td><td>First daily report.</td></tr>
+        <tr><td class="num">D2 · Tue 6</td><td>Read the Govardhan passages in the Prakatya Varta (Vraj 1956 and the Gujarati edition). Write the source note with page numbers. Start beats.</td><td>Registry rows for Day 1 files. Download more core files.</td><td><span class="chip gate">Topic A, B or C</span></td></tr>
+        <tr><td class="num">D3 · Wed 7</td><td>Story beats and script v1, every line labeled and cited.</td><td>Finish the 1 GB proof; write its numbers.</td><td><span class="chip gate">1 GB gate</span></td></tr>
+        <tr><td class="num">D4 · Thu 8</td><td>Script v2. Shot list of about 20 shots.</td><td>30–60 minutes.</td><td><span class="chip gate">Script (Gate 1)</span></td></tr>
+        <tr><td class="num">D5 · Fri 9</td><td>Reference pack: people, cow, village, hill, clothing, style frame, with period tags. Shot specs.</td><td>Download dated museum images for the references (Met open access).</td><td>—</td></tr>
+        <tr><td class="num">D6 · Sat 10</td><td>Tool test: 2 shots through 2 tools, 4 takes each, scored.</td><td>30–60 minutes.</td><td><span class="chip gate">Look + tool + budget</span></td></tr>
+        <tr><td class="num">D7 · Mon 12</td><td>Keyframes (stills) for every shot. Fix continuity in the stills.</td><td>10 GB stage, if approved.</td><td>—</td></tr>
+        <tr><td class="num">D8 · Tue 13</td><td>Turn keyframes into video, batch 1. Log every kept take.</td><td>30–60 minutes.</td><td>—</td></tr>
+        <tr><td class="num">D9 · Wed 14</td><td>Video batch 2 and re-dos. Record narration. Choose music.</td><td>30–60 minutes.</td><td>—</td></tr>
+        <tr><td class="num">D10 · Thu 15</td><td>Rough cut in DaVinci Resolve with narration and music.</td><td>30–60 minutes.</td><td><span class="chip gate">Rough cut notes</span></td></tr>
+        <tr><td class="num">D11 · Fri 16</td><td>Fix notes. Sound mix. Subtitles. Review cut.</td><td>—</td><td><span class="chip gate">Review cut: all 3 gates</span></td></tr>
+        <tr><td class="num">D12 · Sat 17</td><td>Final fixes. Export the master. Archive the project. Write the lessons note and the cost per usable second.</td><td>Update the registry summary.</td><td><span class="chip gate">Final</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>What "done" means on Day 12</h3>
+  <ul>
+    <li>The Pilot 01 master (MP4) and subtitles (.srt) in <code>70_DELIVERABLES</code>.</li>
+    <li>The final script with labels and citations, the shot list, and the take log.</li>
+    <li>The reference pack, saved as reusable assets with IDs.</li>
+    <li>A one-page lessons note: what worked, what failed, hours spent, credits spent, cost per usable second of film.</li>
+    <li>The source library: 1 GB proof done and recorded, 10 GB started if approved.</li>
+  </ul>
+</section>
+
+<!-- 09 -->
+<section id="daily">
+  <div class="eyebrow">Part 9</div>
+  <h2>Your day, and the daily report</h2>
+  <p class="lede">India is 12½ hours ahead of Arizona. Your evening is Dr. Shah's morning, so a report sent at 7:00 pm India time gets answered while you sleep.</p>
+  <figure class="diagram">
+    <div class="scroll">
+      <svg viewBox="0 0 770 230" role="img" aria-label="Daily loop across time zones: Krupali works 10 am to 6:30 pm India time and sends the report at 7 pm; Yash checks it 7 to 8:30 pm; Dr. Shah reads and replies 7 to 9:30 am Arizona time, which is 7:30 to 10 pm India time; replies are waiting when Krupali starts at 10 am the next day.">
+        <defs>
+          <marker id="d5m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="d5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker>
+        </defs>
+        <text x="0" y="18" class="h">INDIA</text>
+        <text x="0" y="34" class="h">ARIZONA</text>
+        <g class="s">
+          <text x="130" y="18" text-anchor="middle">08:00</text><text x="199" y="18" text-anchor="middle">11:00</text><text x="268" y="18" text-anchor="middle">14:00</text><text x="337" y="18" text-anchor="middle">17:00</text><text x="406" y="18" text-anchor="middle">20:00</text><text x="475" y="18" text-anchor="middle">23:00</text><text x="544" y="18" text-anchor="middle">02:00</text><text x="613" y="18" text-anchor="middle">05:00</text><text x="682" y="18" text-anchor="middle">08:00</text><text x="751" y="18" text-anchor="end">11:00</text>
+          <text x="130" y="34" text-anchor="middle">19:30</text><text x="199" y="34" text-anchor="middle">22:30</text><text x="268" y="34" text-anchor="middle">01:30</text><text x="337" y="34" text-anchor="middle">04:30</text><text x="406" y="34" text-anchor="middle">07:30</text><text x="475" y="34" text-anchor="middle">10:30</text><text x="544" y="34" text-anchor="middle">13:30</text><text x="613" y="34" text-anchor="middle">16:30</text><text x="682" y="34" text-anchor="middle">19:30</text><text x="751" y="34" text-anchor="end">22:30</text>
+        </g>
+        <line x1="130" y1="42" x2="130" y2="200" class="grid"/><line x1="199" y1="42" x2="199" y2="200" class="grid"/><line x1="268" y1="42" x2="268" y2="200" class="grid"/><line x1="337" y1="42" x2="337" y2="200" class="grid"/><line x1="406" y1="42" x2="406" y2="200" class="grid"/><line x1="475" y1="42" x2="475" y2="200" class="grid"/><line x1="544" y1="42" x2="544" y2="200" class="grid"/><line x1="613" y1="42" x2="613" y2="200" class="grid"/><line x1="682" y1="42" x2="682" y2="200" class="grid"/>
+        <line x1="498" y1="42" x2="498" y2="200" class="ln dash"/>
+        <text x="502" y="196" class="s">midnight · next day</text>
+
+        <text x="0" y="78" class="t">Krupali</text>
+        <rect x="176" y="62" width="69" height="26" rx="5" class="b"/><text x="210" y="80" text-anchor="middle" class="s">work</text>
+        <rect x="268" y="62" width="103" height="26" rx="5" class="b"/><text x="319" y="80" text-anchor="middle" class="s">work</text>
+        <rect x="371" y="62" width="12" height="26" rx="3" class="a"/>
+        <text x="377" y="56" text-anchor="middle" class="ta">report 7 pm</text>
+        <rect x="728" y="62" width="23" height="26" rx="4" class="k"/>
+        <text x="724" y="56" text-anchor="end" class="s">reads replies, 10 am</text>
+
+        <text x="0" y="128" class="t">Yash</text>
+        <rect x="383" y="112" width="35" height="26" rx="5" class="b"/>
+        <text x="424" y="130" class="s">checks report, adds notes</text>
+
+        <text x="0" y="172" class="t">Dr. Shah</text>
+        <text x="0" y="188" class="s">Arizona</text>
+        <rect x="395" y="156" width="57" height="26" rx="5" class="g"/>
+        <text x="458" y="174" class="s">reads, replies, approves (7–9:30 am AZ)</text>
+
+        <path d="M381,89 C381,100 388,103 390,110" class="lna" marker-end="url(#d5a)"/>
+        <path d="M374,89 V169 H393" class="lna" marker-end="url(#d5a)"/>
+        <path d="M452,160 C560,150 640,120 726,84" class="ln dash" marker-end="url(#d5m)"/>
+        <text x="640" y="104" text-anchor="middle" class="s">answers wait overnight</text>
+      </svg>
+    </div>
+    <figcaption>The report is the hand-off. Send it before you stop work and include every question; the answers are waiting when you start the next morning. Anything urgent during the day goes to Yash by WhatsApp.</figcaption>
+  </figure>
+
+  <h3>A good working day</h3>
+  <ol>
+    <li><strong>10:00</strong> Read replies to last night's report. Adjust today's plan.</li>
+    <li><strong>Morning</strong> Main film work (Lane B), when your attention is best.</li>
+    <li><strong>After lunch</strong> One block of library work (Lane A), then more film work.</li>
+    <li><strong>6:30 pm</strong> Save everything to Drive. Update the logs.</li>
+    <li><strong>7:00 pm</strong> Send the daily report to Dr. Shah and Yash. Save a copy in Drive.</li>
+  </ol>
+
+  <h3>Daily report builder</h3>
+  <p>Fill in the form; the email text builds itself on the right. Copy the subject and body into an email. Your draft stays in this browser until you clear it. The form opens with an example Day 1 report so you can see the shape.</p>
+  <div class="builder">
+    <form id="rb" autocomplete="off">
+      <span class="example-flag" id="rb-flag">Showing an example. Replace it with your own day.</span>
+      <div class="row3">
+        <div class="field"><label for="rb-day">Day number</label><input id="rb-day" type="number" min="1" max="99" value="1"></div>
+        <div class="field"><label for="rb-date">Date</label><input id="rb-date" type="date" value="2026-10-05"></div>
+        <div class="field"><label for="rb-status">Status</label><select id="rb-status"><option>On track</option><option>At risk</option><option>Blocked</option></select></div>
+      </div>
+      <div class="field"><label for="rb-head">Headline (one line)</label><input id="rb-head" type="text" value="Set up done; 6 core texts downloaded and checked"></div>
+      <div class="field"><label for="rb-done">Done today (with Drive links)</label><textarea id="rb-done">Read Parts 1–9 of the packet.
+Installed DaVinci Resolve; logged in to Drive and the AI assistant.
+Downloaded 6 core texts from AQ-0001; all MD5 checks match.</textarea></div>
+      <fieldset>
+        <legend>Lane A · library</legend>
+        <div class="row2">
+          <div class="field"><label for="rb-files">Files added today</label><input id="rb-files" type="number" min="0" value="6"></div>
+          <div class="field"><label for="rb-gb">GB added today</label><input id="rb-gb" type="number" min="0" step="0.01" value="0.11"></div>
+          <div class="field"><label for="rb-rows">Registry rows (total)</label><input id="rb-rows" type="number" min="0" value="6"></div>
+          <div class="field"><label for="rb-dups">Duplicates skipped</label><input id="rb-dups" type="number" min="0" value="2"></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Lane B · Pilot 01</legend>
+        <div class="row2">
+          <div class="field"><label for="rb-shots">Shots planned</label><input id="rb-shots" type="number" min="0" value="0"></div>
+          <div class="field"><label for="rb-keys">Keyframes approved</label><input id="rb-keys" type="number" min="0" value="0"></div>
+          <div class="field"><label for="rb-takes">Video takes made today</label><input id="rb-takes" type="number" min="0" value="0"></div>
+          <div class="field"><label for="rb-secs">Usable seconds so far</label><input id="rb-secs" type="number" min="0" value="0"></div>
+        </div>
+        <div class="field"><label for="rb-spend">Credits or money spent today</label><input id="rb-spend" type="text" value="None"></div>
+      </fieldset>
+      <div class="field"><label for="rb-wait">Waiting on (who, what, since when)</label><textarea id="rb-wait">Yash: edit access to the registry sheet (asked 11:00 today).</textarea></div>
+      <div class="field"><label for="rb-dec">Decisions needed (question → my recommendation → what I will do if no reply in 24 h)</label><textarea id="rb-dec">Pilot topic: A, B or C? → I recommend A, the Govardhan story → if no reply, I start the source note for A.</textarea></div>
+      <div class="field"><label for="rb-prob">Problems or risks</label><textarea id="rb-prob">One file (Siddhant-Rahasya-Darshan-1) is 100 MB and slow; downloading tonight.</textarea></div>
+      <div class="field"><label for="rb-next">Tomorrow (up to 3 items)</label><textarea id="rb-next">Read the Govardhan passages in the Prakatya Varta and write the source note.
+Registry rows for today's files.
+Download the next core texts.</textarea></div>
+      <div class="field"><label for="rb-hours">Hours worked</label><input id="rb-hours" type="number" min="0" step="0.5" value="8"></div>
+    </form>
+    <div class="out" aria-live="polite">
+      <div class="field"><label>Email subject</label><div class="subj" id="rb-subj"></div></div>
+      <div class="btns"><button type="button" id="rb-copy-subj">Copy subject</button><button type="button" id="rb-copy-body">Copy report</button><button type="button" class="ghost" id="rb-clear">Clear form</button></div>
+      <div class="status" id="rb-status-msg"></div>
+      <pre id="rb-out"></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="story">
+  <div class="eyebrow">Part 10</div>
+  <h2>Storytelling: what our research found</h2>
+  <p class="lede">The team studied successful AI films, weak religious dramas and long-form documentaries. These are the lessons that became project rules.</p>
+
+  <h3>The big lessons</h3>
+  <ul>
+    <li><strong>Spectacle is not story.</strong> The Dor Brothers' <em>APEX</em> (3 minutes 15 seconds) was made in about ten hours and went viral. It proves AI can make impressive shots fast. It does not prove that a long story stays clear, consistent and accurate. Our advantage has to be story, emotion, accuracy and continuity.</li>
+    <li><strong>Work on the story before scaling up.</strong> The makers of <em>NEXUS</em>, a 5-minute AI film made by 3 people in 2 weeks, spent about three weeks on an earlier 3-minute script and then changed the idea. Fast pictures do not remove the need for a good script.</li>
+    <li><strong>Their working order:</strong> check the story first, lock the reference images, explore cheaply in stills, and only then compare video tools. We copy that order.</li>
+    <li><strong>One focused story.</strong> Build around one person, one event or one question, the way Amar Chitra Katha comics do, instead of an encyclopedia of names and dates.</li>
+    <li><strong>Learn from weak productions too.</strong> A weak recent fantasy series (Merlin) became a list of what to avoid: confusing introductions, fights that go on too long, fake crowds, modern-model casting, forced old-fashioned speech, and stories that wander away from their title.</li>
+  </ul>
+
+  <h3>The twelve story rules</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Rule</th><th>What it means for Pilot 01</th></tr></thead>
+      <tbody>
+        <tr><td>1. Clarity over complexity</td><td>Viewers follow motive, relationship and consequence, not a list of names.</td></tr>
+        <tr><td>2. Focused entry point</td><td>One cow, one family, one hill, one mystery.</td></tr>
+        <tr><td>3. Title promise</td><td>If the film is called "The mystery on Govardhan hill," the hill and the mystery appear in the first ten seconds.</td></tr>
+        <tr><td>4. Character load</td><td>Introduce a person only when they matter, with a role: "the cowherd's son," "the old woman."</td></tr>
+        <tr><td>5. Mystery, not confusion</td><td>The viewer understands the question and wants the answer. Confusion about who or where is a failure.</td></tr>
+        <tr><td>6. Moral and emotional spine</td><td>Devotion, wonder, care for the animals: a feeling people recognise.</td></tr>
+        <tr><td>7. Natural language</td><td>Plain, clear English. No fake "thee and thou." Keep Sanskrit or Braj words only when they carry real meaning.</td></tr>
+        <tr><td>8. Pacing</td><td>Every shot moves the story. Cut anything that stops changing the stakes.</td></tr>
+        <tr><td>9. Believable world</td><td>Real village people, real work clothes, real bodies and ages. No glossy modern-model look.</td></tr>
+        <tr><td>10. Crowd realism</td><td>Avoid AI crowds where faces are visible. A few real-looking villagers beat a cloned crowd.</td></tr>
+        <tr><td>11. Learn from failures</td><td>Keep a short list of what looks fake or confusing, and check against it.</td></tr>
+        <tr><td>12. The names test</td><td>A first-time viewer who forgets half the names still understands the story.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>How to write each line</h3>
+  <ul>
+    <li><strong>Use the safe wording</strong> from the research files: "Pushtimarg tradition remembers…", "Pushtimarg teaches…". Never "On [date], Shrinathji appeared and said…".</li>
+    <li><strong>Introduce a term once, then trust the viewer.</strong> "Darshan, the sacred moment of seeing the Lord." After that, just "darshan."</li>
+    <li><strong>Do not sound apologetic or sectarian.</strong> Explain what Pushtimarg holds without putting down other traditions.</li>
+    <li><strong>Avoid "idol."</strong> Use "svarupa" or "sacred form."</li>
+    <li><strong>Label beside every line</strong> in your script document, for example <code>[TRADITION · SHR-SRC-000001 p.12]</code>.</li>
+  </ul>
+
+  <h3>Formats the team liked</h3>
+  <div class="cards">
+    <div class="card"><h4>Focused event story</h4><p>One event told with mystery, emotion and an ending that asks "what happens next?" This is Pilot 01.</p></div>
+    <div class="card"><h4>Minute by minute</h4><p>From a popular AI documentary about the dinosaur extinction: strong opening moment, exact place, step-by-step progress, climax, aftermath. Good for later episodes where the order of events is the drama.</p></div>
+  </div>
+
+  <h3>The audience test</h3>
+  <p>The finished pilot will be shown to four kinds of viewers: committed Vaishnavs, younger Vaishnavs, Hindus who do not know Pushtimarg, and people who know nothing about the tradition. The questions: What did you feel? What confused you? What looked fake? Would you watch the next one? <strong>If people talk about the AI, the pilot failed. If they ask "what happens next?", it passed.</strong></p>
+</section>
+
+<!-- 11 -->
+<section id="software">
+  <div class="eyebrow">Part 11</div>
+  <h2>Software: what our research found</h2>
+  <p class="lede">The team looked at dozens of AI film tools from the US, China and Korea. The main finding: no single product does the whole job, and tools change every few months. So we keep what matters in our own files and treat tools as rented and replaceable.</p>
+
+  <figure class="diagram">
+    <div class="scroll">
+      <svg viewBox="0 0 760 330" role="img" aria-label="Three layers: our own files in Drive (sources and claims, script, shot specs, reference pack, prompts and take log, approvals) send references and shot specs down to rented tools (reference images, video models, platforms, audio); every take comes back up and is logged with IDs; kept takes go to the edit in DaVinci Resolve and the approved master is saved to Drive.">
+        <defs>
+          <marker id="d6m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="d6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker>
+        </defs>
+        <rect x="8" y="8" width="744" height="104" rx="12" class="a"/>
+        <text x="24" y="32" class="h" style="fill: var(--accent)">OURS · LIVES IN DRIVE · NEVER INSIDE A TOOL</text>
+        <rect x="24" y="50" width="112" height="44" rx="7" class="b"/><text x="80" y="70" text-anchor="middle" class="t">Sources</text><text x="80" y="86" text-anchor="middle" class="s">+ claims</text>
+        <rect x="146" y="50" width="112" height="44" rx="7" class="b"/><text x="202" y="76" text-anchor="middle" class="t">Script</text>
+        <rect x="268" y="50" width="112" height="44" rx="7" class="b"/><text x="324" y="76" text-anchor="middle" class="t">Shot specs</text>
+        <rect x="390" y="50" width="112" height="44" rx="7" class="b"/><text x="446" y="70" text-anchor="middle" class="t">Reference</text><text x="446" y="86" text-anchor="middle" class="s">pack</text>
+        <rect x="512" y="50" width="112" height="44" rx="7" class="b"/><text x="568" y="70" text-anchor="middle" class="t">Prompts</text><text x="568" y="86" text-anchor="middle" class="s">+ take log</text>
+        <rect x="634" y="50" width="104" height="44" rx="7" class="b"/><text x="686" y="76" text-anchor="middle" class="t">Approvals</text>
+
+        <path d="M300,113 V156" class="lna" marker-end="url(#d6a)"/>
+        <text x="308" y="131" class="ta">references + shot spec go in</text>
+        <path d="M640,156 V115" class="ln" marker-end="url(#d6m)"/>
+        <text x="632" y="149" text-anchor="end" class="s">takes come back, logged with IDs</text>
+
+        <rect x="8" y="158" width="744" height="104" rx="12" class="b" style="stroke-dasharray: 5 4"/>
+        <text x="24" y="182" class="h">RENTED · REPLACEABLE TOOLS</text>
+        <rect x="24" y="196" width="172" height="54" rx="7" class="bg"/><text x="110" y="217" text-anchor="middle" class="t">Reference images</text><text x="110" y="236" text-anchor="middle" class="s">Gemini image, Flow, OpenArt</text>
+        <rect x="206" y="196" width="172" height="54" rx="7" class="bg"/><text x="292" y="217" text-anchor="middle" class="t">Video models</text><text x="292" y="236" text-anchor="middle" class="s">Veo, Seedance, Kling, Runway…</text>
+        <rect x="388" y="196" width="172" height="54" rx="7" class="bg"/><text x="474" y="217" text-anchor="middle" class="t">Platforms</text><text x="474" y="236" text-anchor="middle" class="s">OpenArt, LTX Studio…</text>
+        <rect x="570" y="196" width="168" height="54" rx="7" class="bg"/><text x="654" y="217" text-anchor="middle" class="t">Audio</text><text x="654" y="236" text-anchor="middle" class="s">voice, music, sound</text>
+
+        <path d="M380,263 V284" class="ln" marker-end="url(#d6m)"/>
+        <text x="388" y="279" class="s">kept takes</text>
+        <rect x="8" y="286" width="744" height="36" rx="10" class="k"/>
+        <text x="380" y="309" text-anchor="middle" class="t">Edit in DaVinci Resolve → approved master saved back to Drive</text>
+      </svg>
+    </div>
+    <figcaption>Everything that gives the film its identity stays in the top layer. If a video tool gets worse, more expensive or disappears, we change the middle layer and keep every character, place and approval.</figcaption>
+  </figure>
+
+  <h3>What the research learned about tools</h3>
+  <ol>
+    <li><strong>Reference first.</strong> Every serious tool (Google Flow, Runway, LTX Studio) works better with clean, approved reference images of each character, place and object, reused across shots.</li>
+    <li><strong>Approve a still, then animate it.</strong> Make the frame, approve it, turn it into video, and assemble the clips in your own editor. A bad shot can then be replaced on its own.</li>
+    <li><strong>Be careful with one-click "director" modes.</strong> User reports on long automatic generations describe faces, props and blocking drifting, and credits running out fast. Not for whole films yet.</li>
+    <li><strong>Compare with identical inputs.</strong> Give two tools the same references and the same shot spec, then score both. Never pick a tool from a demo reel or a social media post.</li>
+    <li><strong>Measure cost per usable second,</strong> counting failed and rejected takes, not the advertised price.</li>
+    <li><strong>Hybrid beats prompt-only.</strong> Professional AI films (for example <em>Next Stop Paris</em>) still use normal editing, compositing and planning around the AI shots.</li>
+    <li><strong>Look beyond English-language tools.</strong> Strong models come from China (Seedance, Kling, Wan, Hailuo, Vidu, HunyuanVideo) as well as the US.</li>
+    <li><strong>Stop collecting tools.</strong> On 21 September the team decided there are enough candidates. The job now is controlled testing and real production.</li>
+  </ol>
+
+  <h3>The tools studied, and what we use for Pilot 01</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Layer</th><th>Tools studied</th><th>What the research says</th><th>Pilot 01</th></tr></thead>
+      <tbody>
+        <tr><td>Research and writing</td><td>ChatGPT, Claude</td><td>Useful helpers for drafts and summaries. The Drive files are the memory, not the chat.</td><td><span class="chip use">Use</span> for drafts; you check every fact against the source</td></tr>
+        <tr><td>Reference images</td><td>Google Gemini image ("Nano Banana"), Google Flow ingredients, OpenArt characters, Artlist</td><td>Needed for consistent people and places. Test whether looks hold across many angles.</td><td><span class="chip use">Use</span> one tool, chosen with Yash</td></tr>
+        <tr><td>Video models</td><td>Google Veo (in Flow), ByteDance Seedance 2.0 (in Dreamina), Kling, Runway, LTX, Hailuo, Vidu, Wan, HunyuanVideo</td><td>All benchmark candidates. Seedance 2.0 made <em>APEX</em> and <em>NEXUS</em>. None is chosen yet.</td><td><span class="chip test">Test 2</span> on Day 6, then use the winner</td></tr>
+        <tr><td>Platforms</td><td>OpenArt (Director, Smart Shot), LTX Studio, Hypernatural, Edimakor</td><td>Can reach several models in one place. Director mode: drift and credit-burn reports. OpenArt is marked "must test."</td><td><span class="chip test">Optional</span> as a way to reach a second model</td></tr>
+        <tr><td>Open-source pipelines</td><td>OpenMontage, Pallaidium + Blender, OpenDirector, ComfyUI</td><td>Interesting for later automation and pre-visualisation. Research only.</td><td><span class="chip no">Not now</span></td></tr>
+        <tr><td>Audio</td><td>Narration, music, sound design</td><td>As important as pictures. Pronunciation of sacred terms must be checked.</td><td><span class="chip use">Use</span> a human narrator if possible; licensed music</td></tr>
+        <tr><td>Edit and finish</td><td>DaVinci Resolve, Premiere, Nuke</td><td>Pick by what the film needs.</td><td><span class="chip use">Use</span> DaVinci Resolve (free)</td></tr>
+        <tr><td>Production tracking</td><td>ShotGrid, AYON, Kitsu</td><td>Copy their ideas (IDs, versions, review per version). Do not install them yet.</td><td><span class="chip use">Use</span> a Google Sheet shot tracker</td></tr>
+        <tr><td>Storage</td><td>Google Drive</td><td>The permanent home of everything.</td><td><span class="chip use">Use</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">
+    <span class="label">Budget</span>
+    <p>Dr. Shah sets the spending cap for Pilot 01 before you buy credits. Earlier project notes planned roughly $150 to $500 for a first proof film. Keep every receipt and record credits used per day in the report.</p>
+  </div>
+
+  <h3>The Day 6 tool test</h3>
+  <figure class="diagram">
+    <div class="scroll">
+      <svg viewBox="0 0 760 250" role="img" aria-label="Six approved references feed one shot spec; the same shot spec goes to Tool A and Tool B with identical inputs; each makes four takes; both are scored on the same scorecard; the better tool becomes the primary tool for Pilot 01.">
+        <defs>
+          <marker id="d7m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="d7a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mka"/></marker>
+        </defs>
+        <text x="10" y="16" class="h">APPROVED REFERENCES</text>
+        <rect x="10" y="26" width="156" height="26" rx="6" class="b"/><text x="88" y="44" text-anchor="middle" class="s">Character sheet</text>
+        <rect x="10" y="60" width="156" height="26" rx="6" class="b"/><text x="88" y="78" text-anchor="middle" class="s">Clothing + jewellery</text>
+        <rect x="10" y="94" width="156" height="26" rx="6" class="b"/><text x="88" y="112" text-anchor="middle" class="s">Location views</text>
+        <rect x="10" y="128" width="156" height="26" rx="6" class="b"/><text x="88" y="146" text-anchor="middle" class="s">Props + animals</text>
+        <rect x="10" y="162" width="156" height="26" rx="6" class="b"/><text x="88" y="180" text-anchor="middle" class="s">Style frame</text>
+        <rect x="10" y="196" width="156" height="26" rx="6" class="b"/><text x="88" y="214" text-anchor="middle" class="s">Camera + timing</text>
+        <path d="M167,39 L200,112" class="ln"/><path d="M167,73 L200,114" class="ln"/><path d="M167,107 L200,117" class="ln"/><path d="M167,141 L200,120" class="ln"/><path d="M167,175 L200,123" class="ln"/><path d="M167,209 L200,126" class="ln"/>
+        <rect x="202" y="90" width="140" height="60" rx="8" class="a"/><text x="272" y="116" text-anchor="middle" class="t">Shot spec</text><text x="272" y="134" text-anchor="middle" class="s">SHR-P01-SHOT-030</text>
+        <path d="M343,110 L396,72" class="lna" marker-end="url(#d7a)"/>
+        <path d="M343,130 L396,168" class="lna" marker-end="url(#d7a)"/>
+        <text x="350" y="124" class="ta">identical inputs</text>
+        <rect x="398" y="44" width="124" height="52" rx="8" class="b"/><text x="460" y="66" text-anchor="middle" class="t">Tool A</text><text x="460" y="84" text-anchor="middle" class="s">e.g. Veo in Flow</text>
+        <rect x="398" y="144" width="124" height="52" rx="8" class="b"/><text x="460" y="166" text-anchor="middle" class="t">Tool B</text><text x="460" y="184" text-anchor="middle" class="s">e.g. Seedance</text>
+        <path d="M523,70 L572,108" class="ln" marker-end="url(#d7m)"/>
+        <path d="M523,170 L572,132" class="ln" marker-end="url(#d7m)"/>
+        <text x="548" y="78" class="s">4 takes</text>
+        <text x="548" y="172" class="s">4 takes</text>
+        <rect x="574" y="90" width="176" height="60" rx="8" class="b"/><text x="662" y="116" text-anchor="middle" class="t">Same scorecard</text><text x="662" y="134" text-anchor="middle" class="s">1–5 on each line below</text>
+        <path d="M662,151 V182" class="ln" marker-end="url(#d7m)"/>
+        <rect x="574" y="184" width="176" height="40" rx="8" class="k"/><text x="662" y="209" text-anchor="middle" class="t">Primary tool for Pilot 01</text>
+      </svg>
+    </div>
+    <figcaption>Only the tool changes between the two branches. That is what makes the comparison fair: any difference in the takes comes from the tool, not from different prompts or references.</figcaption>
+  </figure>
+  <p>Use two shots that are not sacred: a wide shot of the cow walking up the hill at dawn, and a medium shot of a villager's face reacting. Score each tool from 1 to 5 on:</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Score line</th><th>Question</th></tr></thead>
+      <tbody>
+        <tr><td>Identity</td><td>Does the person and the cow look the same as the reference, in every take?</td></tr>
+        <tr><td>Clothing and props</td><td>Same clothes, jewellery, pots and markings as the reference?</td></tr>
+        <tr><td>Place</td><td>Does the hill and village match the location views?</td></tr>
+        <tr><td>Motion</td><td>Natural movement of people and animals? Did it do the action asked?</td></tr>
+        <tr><td>Camera</td><td>Did it follow the framing and camera move in the spec?</td></tr>
+        <tr><td>Artifacts</td><td>Any extra fingers, melting faces, random text, flicker?</td></tr>
+        <tr><td>Period</td><td>Anything modern or from the wrong century?</td></tr>
+        <tr><td>Speed and cost</td><td>Minutes per take, credits per take, and how many takes until one was usable.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 12 -->
+<section id="canon">
+  <div class="eyebrow">Part 12</div>
+  <h2>Visual canon and continuity</h2>
+  <p class="lede">"Canon" means the approved look of every recurring person, place and object. Once something is approved and shown, it must look the same every time it returns, in Pilot 01 and in every later episode.</p>
+  <h3>What goes in the reference pack</h3>
+  <div class="cards">
+    <div class="card"><h4>People <span class="mono">SHR-CHAR-###</span></h4><ul><li>Front, three-quarter and side views</li><li>Age, build, hair, face, skin, scars</li><li>Expressions: calm, worried, amazed</li></ul></div>
+    <div class="card"><h4>The cow <span class="mono">SHR-CHAR-###</span></h4><ul><li>Colour, markings, horns, size</li><li>Bell, rope, any ornaments</li><li>Side view, walking, standing still</li></ul></div>
+    <div class="card"><h4>Places <span class="mono">SHR-LOC-###</span></h4><ul><li>Govardhan hillside: rocks, plants, paths</li><li>The village: houses, walls, roofs, wells</li><li>Views from several angles and times of day</li></ul></div>
+    <div class="card"><h4>Clothing and objects <span class="mono">SHR-PROP-###</span></h4><ul><li>Everyday clothes of Braj villagers</li><li>Milk pots, ropes, baskets, tools</li><li>Period notes for each</li></ul></div>
+  </div>
+  <h3>The world must stay the same</h3>
+  <p>The workflow from the production file: <strong>historical evidence → approved reconstruction → reference package → master reference images → shot generation → continuity check → reuse in every later appearance.</strong> Where nobody knows exactly how something looked, label it "historically plausible reconstruction," never "this is how it was."</p>
+  <h3>Period tags</h3>
+  <p>Every reference image gets a tag: what it shows, when it was made, and what it may be used for. A 19th-century Nathdwara painting is good evidence for 19th-century Nathdwara painting. It is not evidence for what a Braj village looked like around 1500. The Metropolitan Museum's open-access images (queue item <code>AQ-0003</code>) are free to use (CC0) and a good place to start, but tag them carefully.</p>
+  <h3>Reject a shot if it has</h3>
+  <ul>
+    <li>Faces, hands or jewellery that change between shots.</li>
+    <li>Random letters, signs or writing in the picture.</li>
+    <li>Buildings that could not exist, or styles from the wrong century.</li>
+    <li>Modern objects, modern haircuts, modern-model bodies.</li>
+    <li>A cloned crowd: repeated faces, everyone moving the same way.</li>
+    <li>Clothing or a place that changes without a reason.</li>
+  </ul>
+</section>
+
+<!-- 13 -->
+<section id="files">
+  <div class="eyebrow">Part 13</div>
+  <h2>Files, names and logs</h2>
+  <p class="lede">Use the folders that already exist. Do not make a new folder system. Read the main project files, but do not edit them.</p>
+<pre class="tree">01_COMMERCIAL_VENTURES/                 <span class="c">the Shri Videos project</span>
+├─ 00_MASTER_GUIDE.md, 01_…04_*.md      <span class="c">rulebook + research: read only</span>
+├─ SHRI_SOURCE_REGISTRY                 <span class="c">one row per source file</span>
+├─ SHRI_ACQUISITION_QUEUE               <span class="c">AQ-0001 … AQ-0012</span>
+├─ 10_RESEARCH_LIBRARY/
+│  ├─ 01_ORIGINAL_SOURCES/<span class="x">AQ-0001/</span>     <span class="c">downloaded originals, never edited</span>
+│  ├─ 04_CLAIMS_CITATIONS/              <span class="c">your source notes</span>
+│  └─ 05_VISUAL_REFERENCE_SOURCES/      <span class="c">dated museum images</span>
+├─ 30_STORY_DEVELOPMENT/
+│  ├─ 02_EPISODE_OUTLINES/              <span class="c">beat sheet</span>
+│  ├─ 03_SCRIPTS/                       <span class="c">script v1, v2 … with labels</span>
+│  └─ 05_SHOT_DESIGN/                   <span class="c">shot list + shot specs</span>
+├─ 40_PRODUCTION/01_CINEMATIC_PROOF/<span class="x">PILOT_01/</span>
+│  ├─ <span class="x">01_KEYFRAMES/  02_TAKES/  03_AUDIO/</span>
+│  ├─ <span class="x">04_EDIT_PROJECT/  05_EXPORTS/</span>
+│  └─ <span class="x">06_DAILY_REPORTS/  07_LOGS/</span>        <span class="c">report copies, take log, cost sheet</span>
+├─ 50_SHARED_ASSET_LIBRARY/             <span class="c">approved people, places, props, audio</span>
+├─ 60_REVIEW_APPROVAL/                  <span class="c">Dr. Shah's gate decisions</span>
+├─ 70_DELIVERABLES/                     <span class="c">the finished pilot</span>
+└─ 99_SYSTEM_INDEX/01_MANIFESTS, 02_HASHES_DEDUP</pre>
+  <p>Folders shown in <span style="color: var(--accent)">orange</span> are new ones Yash creates for you on Day 1.</p>
+
+  <h3>Naming</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Thing</th><th>Pattern</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Source</td><td class="mono">SHR-SRC-000001</td><td>the 1956 Prakatya Varta</td></tr>
+        <tr><td>Person or animal</td><td class="mono">SHR-CHAR-001</td><td>the cow</td></tr>
+        <tr><td>Place</td><td class="mono">SHR-LOC-001</td><td>Govardhan hillside</td></tr>
+        <tr><td>Object</td><td class="mono">SHR-PROP-001</td><td>clay milk pot</td></tr>
+        <tr><td>Shot</td><td class="mono">SHR-P01-SHOT-010</td><td>count in tens so you can insert shots later</td></tr>
+        <tr><td>Take</td><td class="mono">SHR-P01-SHOT-010_T03_veo.mp4</td><td>third take of shot 10, made with Veo</td></tr>
+        <tr><td>Version</td><td class="mono">_v001, _v002</td><td>never overwrite; save a new version</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The shot spec (one per shot)</h3>
+  <p>Shot ID · length in seconds · story beat it serves · framing (wide, medium, close) · camera move · action, with times ("0–3 s: cow walks left to right; 3–6 s: stops, looks uphill") · people and animals (reference IDs) · clothing and props (IDs) · location (ID) · style frame · light and time of day · claim label and source ID · must keep · must avoid.</p>
+
+  <h3>The take log (one row per kept take)</h3>
+  <p>Take ID · shot ID · date and time · tool and model, with version if shown · prompt (copied exactly) · reference images used · settings (seed, length, aspect) · credits used · output file name · kept or rejected, and why. Rejected takes only need a count per shot.</p>
+  <p class="note ok" style="margin-top:6px"><span class="label">Why the logs matter</span>The logs are how we compare tools fairly, work out the real cost per usable second, and remake a shot months later with a better tool.</p>
+</section>
+
+<!-- 14 -->
+<section id="checks">
+  <div class="eyebrow">Part 14</div>
+  <h2>Quality checks before you send anything</h2>
+  <div class="cards">
+    <div class="card">
+      <h4>Before the script goes to Gate 1</h4>
+      <ul>
+        <li>Every line has a label and, if needed, a source ID and page.</li>
+        <li>No invented divine words, no mantra, no exact Gregorian date.</li>
+        <li>Safe wording used for tradition.</li>
+        <li>Every name arrives with a role.</li>
+        <li>About 230 to 260 words.</li>
+        <li>Read it aloud: does it make you want the next line?</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Before the look goes to Gate 2</h4>
+      <ul>
+        <li>Every reference has an ID and a period tag.</li>
+        <li>Nothing modern, nothing from the wrong century.</li>
+        <li>People look like real villagers, not models.</li>
+        <li>The tool test scores are filled in for both tools.</li>
+        <li>Spend so far is under the cap.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Before the review cut (all 3 gates)</h4>
+      <ul>
+        <li>Opening hooks within 10 seconds.</li>
+        <li>Each person, the cow and the hill look the same in every shot.</li>
+        <li>No artifacts, no stray text, no cloned faces.</li>
+        <li>Narration clear; sacred terms pronounced correctly.</li>
+        <li>Music does not drown the voice.</li>
+        <li>Length 1:50 to 2:10; subtitles match the audio.</li>
+        <li>Watch it once on a phone and once on a large screen.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section id="words">
+  <div class="eyebrow">Part 15</div>
+  <h2>Words to know</h2>
+  <p class="lede">Pushtimarg terms with the plain wording our glossary recommends, then the production terms used in this packet.</p>
+  <dl class="gloss">
+    <dt>Pushti</dt><dd>Divine grace.</dd>
+    <dt>Pushtimarg</dt><dd>"The Path of Grace," the tradition founded by Shri Vallabhacharyaji.</dd>
+    <dt>Shrinathji / Shreeji</dt><dd>The Krishna svarupa at the heart of Pushtimarg, associated with Govardhan and now in Nathdwara. Use "Shrinathji" first.</dd>
+    <dt>Mahaprabhuji</dt><dd>First use: "Shri Vallabhacharyaji, revered in Pushtimarg as Mahaprabhuji."</dd>
+    <dt>Gusainji</dt><dd>First use: "Shri Vitthalnathji, known as Gusainji," Vallabhacharyaji's son.</dd>
+    <dt>Vallabhkul</dt><dd>Vallabhacharyaji's lineage.</dd>
+    <dt>Seva</dt><dd>Loving service and care offered to the Lord.</dd>
+    <dt>Svarupa</dt><dd>The sacred form of the Lord. Use instead of "idol."</dd>
+    <dt>Prakatya</dt><dd>Manifestation, the Lord's appearing.</dd>
+    <dt>Darshan</dt><dd>The sacred encounter of seeing the Lord.</dd>
+    <dt>Haveli</dt><dd>A Pushtimarg temple, built like a home.</dd>
+    <dt>Thakurji</dt><dd>The Lord as cared for in the home or haveli.</dd>
+    <dt>Brahmasambandha</dt><dd>The sacred bond of dedication to Shri Krishna. Its mantra is never shown or spoken in our films without approval.</dd>
+    <dt>Bhava</dt><dd>Devotional feeling.</dd>
+    <dt>Lila</dt><dd>Divine play.</dd>
+    <dt>Shuddhadvaita</dt><dd>Vallabhacharyaji's philosophy of pure non-dualism.</dd>
+    <dt>Varta</dt><dd>Devotional story literature, such as the 84 and 252 Vaishnav Vartas and the Prakatya Varta. Sacred within the tradition; written down in layers over time.</dd>
+    <dt>Braj</dt><dd>The region around Mathura, Vrindavan, Gokul and Govardhan.</dd>
+  </dl>
+  <dl class="gloss">
+    <dt>Gate</dt><dd>An approval point. Gate 1 religious and historical, Gate 2 creative, Gate 3 technical and continuity.</dd>
+    <dt>Reference pack</dt><dd>Approved images that define how people, places and objects look.</dd>
+    <dt>Keyframe</dt><dd>An approved still image for one shot, made before the video.</dd>
+    <dt>Take</dt><dd>One attempt from an AI tool. Most takes are thrown away.</dd>
+    <dt>Version</dt><dd>A saved, reviewable state of a shot or file: v001, v002.</dd>
+    <dt>Shot spec</dt><dd>The written instructions for one shot (see Part 13).</dd>
+    <dt>Manifest</dt><dd>The approved list of files to download.</dd>
+    <dt>Registry</dt><dd>The sheet with one row for every source we hold.</dd>
+    <dt>MD5 / SHA-256</dt><dd>Fingerprints of a file. If one byte changes, the fingerprint changes.</dd>
+    <dt>OCR</dt><dd>Turning a scanned page into typed text.</dd>
+    <dt>Claim label</dt><dd>HISTORY, TRADITION, THEOLOGY, DRAMATIZATION or OPEN, written beside each script line.</dd>
+  </dl>
+</section>
+
+<!-- 16 -->
+<section id="day1">
+  <div class="eyebrow">Part 16</div>
+  <h2>Day 1 checklist</h2>
+  <p class="lede">Tick items as you go. The ticks stay in this browser.</p>
+  <ul class="check" id="checklist">
+    <li><label><input type="checkbox" id="c1"><span>Read Parts 1 to 9 of this packet.</span></label></li>
+    <li><label><input type="checkbox" id="c2"><span>Get edit access to the Shri Drive folder from Yash (only this folder) and open <code>00_MASTER_GUIDE.md</code>.</span></label></li>
+    <li><label><input type="checkbox" id="c3"><span>Log in to the AI assistant account Dr. Shah or Yash gives you.</span></label></li>
+    <li><label><input type="checkbox" id="c4"><span>Install DaVinci Resolve (free) and check your laptop has at least 150 GB free.</span></label></li>
+    <li><label><input type="checkbox" id="c5"><span>Get the manifest CSV from Yash and download the first core texts in Part 6.</span></label></li>
+    <li><label><input type="checkbox" id="c6"><span>Check each file's MD5 and make its SHA-256.</span></label></li>
+    <li><label><input type="checkbox" id="c7"><span>Ask Yash to create the new <code>PILOT_01</code> and <code>AQ-0001</code> folders.</span></label></li>
+    <li><label><input type="checkbox" id="c8"><span>Send your first daily report by 7:00 pm and save a copy in Drive.</span></label></li>
+  </ul>
+
+  <h3>What Yash and Dr. Shah provide</h3>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Item</th><th>From</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td>Edit access to the Shri Drive folder only</td><td>Yash</td><td>Day 1</td></tr>
+        <tr><td>Manifest CSV and edit access to the registry sheet</td><td>Yash</td><td>Day 1</td></tr>
+        <tr><td>AI assistant account for research and drafts</td><td>Dr. Shah / Yash</td><td>Day 1</td></tr>
+        <tr><td>Image and video tool accounts, and the spending cap</td><td>Dr. Shah</td><td>By Day 5</td></tr>
+        <tr><td>A quiet place and a microphone (or a good phone) for narration</td><td>Yash</td><td>By Day 9</td></tr>
+        <tr><td>Topic, script, look and final approvals</td><td>Dr. Shah</td><td>See Part 8</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Who to ask</h3>
+  <ul>
+    <li><strong>Yash:</strong> anything practical (access, tools, credits, schedule) and anything unclear. WhatsApp for urgent questions during the day.</li>
+    <li><strong>Dr. Shah:</strong> approvals and religious or historical questions, through the daily report.</li>
+    <li><strong>Never contact directly:</strong> temples, havelis, scholars, publishers or rights owners. If you think we need permission for something, write it in the report.</li>
+    <li><strong>Never post:</strong> nothing from Shri Videos goes online until Dr. Shah says so.</li>
+  </ul>
+
+  <p class="foot">Prepared 5 October 2026 from the Shri Videos project files: Master Guide, research framework, chronology, Prakatya and Brahmasambandha dossier, glossary, rights policy, production system, story rules, research ledger, AI-film research (TECH_03) and acquisition specification (TECH_04). Internet Archive figures measured from archive.org's public file list on 5 October 2026.</p>
+</section>
+
+</main>
+</div>
+
+<script>
+(function () {
+  var store = {
+    get: function (k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} },
+    del: function (k) { try { window.localStorage.removeItem(k); } catch (e) {} }
+  };
+
+  /* checklist */
+  var boxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+  var saved = {};
+  try { saved = JSON.parse(store.get('shri-day1') || '{}') || {}; } catch (e) { saved = {}; }
+  boxes.forEach(function (b) {
+    if (saved[b.id]) b.checked = true;
+    b.addEventListener('change', function () { saved[b.id] = b.checked; store.set('shri-day1', JSON.stringify(saved)); });
+  });
+
+  /* report builder */
+  var ids = ['day','date','status','head','done','files','gb','rows','dups','shots','keys','takes','secs','spend','wait','dec','prob','next','hours'];
+  var el = {}; ids.forEach(function (k) { el[k] = document.getElementById('rb-' + k); });
+  var outEl = document.getElementById('rb-out');
+  var subjEl = document.getElementById('rb-subj');
+  var msg = document.getElementById('rb-status-msg');
+  var flag = document.getElementById('rb-flag');
+  var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function niceDate(v) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+    if (!m) return '';
+    var d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+    return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+  }
+  function lines(v, bullet) {
+    var arr = String(v || '').split(/\r?\n/).map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!arr.length) return '- none';
+    return arr.map(function (s) { return (bullet || '- ') + s; }).join('\n');
+  }
+  function val(k, fallback) { var v = el[k] && el[k].value; return (v === undefined || v === '') ? fallback : v; }
+
+  function build() {
+    var day = String(val('day', '?')).padStart(2, '0');
+    var dateTxt = niceDate(val('date', ''));
+    var subj = 'Shri Daily · Day ' + day + ' · ' + (dateTxt || 'date') + ' · ' + val('status', 'On track');
+    var body =
+      'SHRI VIDEOS · DAILY REPORT\n' +
+      'Krupali · Day ' + day + ' · ' + (dateTxt || '') + '\n' +
+      'Status: ' + val('status', 'On track') + '\n\n' +
+      'HEADLINE\n' + val('head', '-') + '\n\n' +
+      'DONE TODAY\n' + lines(val('done', '')) + '\n\n' +
+      'LANE A · SOURCE LIBRARY\n' +
+      '- Files added today: ' + val('files', '0') + '\n' +
+      '- GB added today: ' + val('gb', '0') + '\n' +
+      '- Registry rows (total): ' + val('rows', '0') + '\n' +
+      '- Duplicates skipped: ' + val('dups', '0') + '\n\n' +
+      'LANE B · PILOT 01\n' +
+      '- Shots planned: ' + val('shots', '0') + '\n' +
+      '- Keyframes approved: ' + val('keys', '0') + '\n' +
+      '- Video takes made today: ' + val('takes', '0') + '\n' +
+      '- Usable seconds so far: ' + val('secs', '0') + ' of ~120\n' +
+      '- Credits / money spent today: ' + val('spend', 'None') + '\n\n' +
+      'WAITING ON\n' + lines(val('wait', '')) + '\n\n' +
+      'DECISIONS NEEDED\n' + lines(val('dec', ''), '? ') + '\n\n' +
+      'PROBLEMS / RISKS\n' + lines(val('prob', '')) + '\n\n' +
+      'TOMORROW\n' + lines(val('next', '')) + '\n\n' +
+      'Hours worked: ' + val('hours', '-');
+    subjEl.textContent = subj;
+    outEl.textContent = body;
+  }
+
+  function snapshot() { var o = {}; ids.forEach(function (k) { o[k] = el[k].value; }); return o; }
+  function restore() {
+    var raw = store.get('shri-report-draft');
+    if (!raw) return false;
+    try {
+      var o = JSON.parse(raw);
+      ids.forEach(function (k) { if (o && Object.prototype.hasOwnProperty.call(o, k)) el[k].value = o[k]; });
+      return true;
+    } catch (e) { return false; }
+  }
+
+  if (restore()) flag.textContent = 'Your saved draft.';
+  build();
+
+  document.getElementById('rb').addEventListener('input', function () {
+    flag.textContent = 'Your draft (saved in this browser).';
+    store.set('shri-report-draft', JSON.stringify(snapshot()));
+    build();
+  });
+  document.getElementById('rb').addEventListener('submit', function (e) { e.preventDefault(); });
+
+  function copyText(text, label) {
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(label === 'Subject' ? subjEl : outEl);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      msg.textContent = 'Selected. Press Ctrl+C (or Cmd+C) to copy.';
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { msg.textContent = label + ' copied.'; }, fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  }
+  document.getElementById('rb-copy-subj').addEventListener('click', function () { copyText(subjEl.textContent, 'Subject'); });
+  document.getElementById('rb-copy-body').addEventListener('click', function () { copyText(outEl.textContent, 'Report'); });
+  document.getElementById('rb-clear').addEventListener('click', function () {
+    ids.forEach(function (k) {
+      if (k === 'status') { el[k].selectedIndex = 0; }
+      else if (k === 'date') {
+        var d = new Date();
+        el[k].value = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      }
+      else if (el[k].type === 'number') { el[k].value = ''; }
+      else { el[k].value = ''; }
+    });
+    store.del('shri-report-draft');
+    flag.textContent = 'Blank form.';
+    msg.textContent = 'Form cleared.';
+    build();
+  });
+})();
+</script>

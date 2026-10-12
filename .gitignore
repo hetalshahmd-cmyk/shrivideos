@@ -1,0 +1,11 @@
+# Downloaded books are private research copies. Never commit them.
+library/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
